@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import main.graphics.Display;
+import main.input.KeyManager;
+import main.input.MouseManager;
 
 public class Game extends Display implements Runnable {
 	
@@ -17,6 +19,10 @@ public class Game extends Display implements Runnable {
 	
 	//Handler
 	private Handler handler;
+	
+	//Input
+	private KeyManager keyManager;
+	private MouseManager mouseManager;
 
 	public Game(String title, int width, int height) {
 		super(title, width, height);
@@ -108,5 +114,14 @@ public class Game extends Display implements Runnable {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//Getters & Setters
+	
+	public KeyManager getKeyManager(){
+		return keyManager;
+	}
+	
+	public MouseManager getMouseManager(){
+		return mouseManager;
+	}
 }
