@@ -5,7 +5,8 @@ import main.graphics.Display;
 public class Launcher {
 
 	public static void main (String args[]) {
-		Display display =new Display("Bernard PTDR", 720,480);
+		Game game =new Game("Bernard PTDR", 720,480);
+		game.start();
 	}
 	
 }
