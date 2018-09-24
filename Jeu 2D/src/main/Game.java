@@ -32,21 +32,24 @@ public class Game extends Display implements Runnable {
 
 	public Game(String title, int width, int height) {
 		super(title, width, height);
+		keyManager = new KeyManager();
 	}
 
 	private void init(){
+		this.getCanvas().addKeyListener(keyManager);
+		
 		handler = new Handler(this);
 		Assets.init();
-		
-		gameState = new GameState(handler);
+				
+		gameState = new GameState(this);
 		State.setState(gameState);
 	}
 	
-
-	int x = 0;
-	
 	private void tick(){
-		x += 1;
+		keyManager.tick();
+		
+		if(State.getState() != null)
+			State.getState().tick();
 	}
 	
 	private void render(){
@@ -132,9 +135,5 @@ public class Game extends Display implements Runnable {
 	
 	public KeyManager getKeyManager(){
 		return keyManager;
-	}
-	
-	public MouseManager getMouseManager(){
-		return mouseManager;
 	}
 }
