@@ -3,9 +3,12 @@ package main;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import main.graphics.Assets;
 import main.graphics.Display;
 import main.input.KeyManager;
 import main.input.MouseManager;
+import main.states.GameState;
+import main.states.State;
 
 public class Game extends Display implements Runnable {
 	
@@ -23,6 +26,9 @@ public class Game extends Display implements Runnable {
 	//Input
 	private KeyManager keyManager;
 	private MouseManager mouseManager;
+	
+	//States
+	private State gameState;
 
 	public Game(String title, int width, int height) {
 		super(title, width, height);
@@ -30,11 +36,17 @@ public class Game extends Display implements Runnable {
 
 	private void init(){
 		handler = new Handler(this);
+		Assets.init();
+		
+		gameState = new GameState(handler);
+		State.setState(gameState);
 	}
 	
 
-	private void tick(){
+	int x = 0;
 	
+	private void tick(){
+		x += 1;
 	}
 	
 	private void render(){
@@ -51,7 +63,8 @@ public class Game extends Display implements Runnable {
 		g.clearRect(0, 0, this.getWidth(), this.getHeight());
 		//Draw Here!
 		
-		g.fillRect(0, 0, 150, 150);
+		if(State.getState() != null)
+			State.getState().render(g);
 		
 		//End Drawing!
 		
