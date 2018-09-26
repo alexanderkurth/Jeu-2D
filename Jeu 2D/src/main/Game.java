@@ -5,6 +5,7 @@ import java.awt.image.BufferStrategy;
 
 import main.graphics.Assets;
 import main.graphics.Display;
+import main.graphics.GameCamera;
 import main.input.KeyManager;
 import main.input.MouseManager;
 import main.states.GameState;
@@ -27,6 +28,8 @@ public class Game extends Display implements Runnable {
 	private KeyManager keyManager;
 	private MouseManager mouseManager;
 	
+	private GameCamera gameCamera;
+	
 	//States
 	private State gameState;
 
@@ -40,7 +43,9 @@ public class Game extends Display implements Runnable {
 		
 		handler = new Handler(this);
 		Assets.init();
-				
+		
+		gameCamera = new GameCamera(this, 0, 0);
+		
 		gameState = new GameState(this);
 		State.setState(gameState);
 	}
@@ -135,5 +140,9 @@ public class Game extends Display implements Runnable {
 	
 	public KeyManager getKeyManager(){
 		return keyManager;
+	}
+	
+	public GameCamera getGameCamera(){
+		return gameCamera;
 	}
 }
