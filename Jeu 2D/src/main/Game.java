@@ -44,9 +44,9 @@ public class Game extends Display implements Runnable {
 		handler = new Handler(this);
 		Assets.init();
 		
-		gameCamera = new GameCamera(this, 0, 0);
+		gameCamera = new GameCamera(handler, 0, 0);
 		
-		gameState = new GameState(this);
+		gameState = new GameState(handler);
 		State.setState(gameState);
 	}
 	

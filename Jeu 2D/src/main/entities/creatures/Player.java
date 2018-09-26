@@ -1,40 +1,79 @@
 package main.entities.creatures;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
-import main.Game;
+import main.Handler;
+import main.graphics.Animation;
 import main.graphics.Assets;
 
 public class Player extends Creature {
 	
-	public Player(Game game, float x, float y) {
-		super(game, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+	//Animations
+	private Animation animDown, animUp, animLeft, animRight;
+	
+	public Player(Handler handler, float x, float y) {
+		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+		
+		bounds.x = 11;
+		bounds.y = 22;
+		bounds.width = 10;
+		bounds.height = 10;
+		
+		//Animatons
+		animDown = new Animation(500, Assets.player_down);
+		animUp = new Animation(500, Assets.player_up);
+		animLeft = new Animation(500, Assets.player_left);
+		animRight = new Animation(500, Assets.player_right);
 	}
 
 	@Override
 	public void tick() {
+		//Animations
+		animDown.tick();
+		animUp.tick();
+		animRight.tick();
+		animLeft.tick();
+		//Movement
 		getInput();
 		move();
-		game.getGameCamera().centerOnEntity(this);
+		handler.getGameCamera().centerOnEntity(this);
 	}
 	
 	private void getInput(){
 		xMove = 0;
 		yMove = 0;
 		
-		if(game.getKeyManager().up)
+		if(handler.getKeyManager().up)
 			yMove = -speed;
-		if(game.getKeyManager().down)
+		if(handler.getKeyManager().down)
 			yMove = speed;
-		if(game.getKeyManager().left)
+		if(handler.getKeyManager().left)
 			xMove = -speed;
-		if(game.getKeyManager().right)
+		if(handler.getKeyManager().right)
 			xMove = speed;
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.player, (int) (x - game.getGameCamera().getxOffset()), (int) (y - game.getGameCamera().getyOffset()), width, height, null);
+		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+		
+//		g.setColor(Color.red);
+//		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
+//				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
+//				bounds.width, bounds.height);
+	}
+	
+	private BufferedImage getCurrentAnimationFrame(){
+		if(xMove < 0){
+			return animLeft.getCurrentFrame();
+		}else if(xMove > 0){
+			return animRight.getCurrentFrame();
+		}else if(yMove < 0){
+			return animUp.getCurrentFrame();
+		}else{
+			return animDown.getCurrentFrame();
+		}
 	}
 
 }
