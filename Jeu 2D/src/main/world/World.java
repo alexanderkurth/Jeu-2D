@@ -11,9 +11,13 @@ import main.utils.Utils;
 
 public class World {
 
+	//handler
 	private Handler handler;
+	//Longueur et largeur
 	private int width, height;
+	//Coordonnees joueur
 	private int spawnX, spawnY;
+	//Tuiles niveau
 	private int[][] tiles;
 	//Entities
 	private EntityManager entityManager;
@@ -59,7 +63,7 @@ public class World {
 			return Tile.dirtTile;
 		return t;
 	}
-	
+
 	private void loadWorld(String path){
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");
@@ -75,6 +79,8 @@ public class World {
 			}
 		}
 	}
+	
+	//Getters & Setters
 	
 	public int getWidth(){
 		return width;
