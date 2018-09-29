@@ -1,11 +1,11 @@
 package main.world;
 
 import java.awt.Graphics;
+import java.util.Random;
 
 import main.Handler;
 import main.entities.EntityManager;
 import main.entities.creatures.Player;
-import main.entities.statics.Tree;
 import main.tile.Tile;
 import main.utils.Utils;
 
@@ -26,9 +26,10 @@ public class World {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		// Temporary entity code!
-		entityManager.addEntity(new Tree(handler, 100, 250));
+		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
-		loadWorld(path);
+		//loadWorld(path);
+		createWorld();
 		
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
@@ -63,7 +64,7 @@ public class World {
 			return Tile.dirtTile;
 		return t;
 	}
-
+/*
 	private void loadWorld(String path){
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");
@@ -79,6 +80,47 @@ public class World {
 			}
 		}
 	}
+	*/
+	
+	
+	private int y=0;
+	private int x = 0;
+	public void createWorld() {
+		width = 100;
+		height = 100;
+		tiles = new int[height][width];
+		
+		room(05,0,5,5);
+	}
+	
+	private void room(int x, int y, int height, int width) {
+		 int heightRoom = y + height;
+		 int widthRoom = x + width;
+		 
+		 for(int i=x; i < widthRoom; i++) {
+			 for(int j=y; j < heightRoom; j++) {
+				 tiles[i][j] = 1;	 
+				 
+				 if(i == x && j != heightRoom) {
+					 tiles[i][j] = 2;
+				 }
+				 
+				 if(i != x && j == (heightRoom-1)) {
+					 tiles[i][j] = 2;
+				 }
+				 
+				 if(j == y && x != (widthRoom-1)) {
+					 tiles[i][j] = 2;
+				 }
+				 
+				 if(i == widthRoom-1) {
+					 tiles[i][j] = 2;
+				 }
+
+			 }
+		 }
+	}
+
 	
 	//Getters & Setters
 	
