@@ -90,7 +90,7 @@ public class World {
 		height = 100;
 		tiles = new int[height][width];
 		
-		room(05,0,5,5);
+		room(05,0,15,15);
 	}
 	
 	private void room(int x, int y, int height, int width) {
