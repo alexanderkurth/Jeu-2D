@@ -31,8 +31,8 @@ public class World {
 		//loadWorld(path);
 		createWorld();
 		
-		entityManager.getPlayer().setX(spawnX);
-		entityManager.getPlayer().setY(spawnY);
+		entityManager.getPlayer().setX(200);
+		entityManager.getPlayer().setY(200);
 	}
 	
 	public void tick(){
@@ -80,69 +80,77 @@ public class World {
 			}
 		}
 	}
-	*/
-	
-	
-	private int y=0;
-	private int x = 0;
+	*/	
 	public void createWorld() {
 		width = 100;
 		height = 100;
 		tiles = new int[height][width];
 		
-		//room(1,0,5,5);
-		corridor(1,1,4,5);
+		room(3,3,11,11);
+		//corridor(1,10,5,5);
 	}
 	
 	private void room(int x, int y, int height, int width) {
 		 int heightRoom = y + height;
 		 int widthRoom = x + width;
 		 
+		 int xMiddle = (x + widthRoom)/2;
+		 int yMiddle = (y +heightRoom)/2;
+		 
 		 for(int i=x; i < widthRoom; i++) {
 			 for(int j=y; j < heightRoom; j++) {
-				 tiles[i][j] = 1;	 
+				// tiles[i][j] = 1;	 
 				 
-				 if(i == x ) {
+				 if(i == x ) 
 					 tiles[i][j] = 2;
-				 }
 				 
-				 if(i != x && j == (heightRoom-1)) {
-					 tiles[i][j] = 2;
-				 }
 				 
-				 if(j == y && x != (widthRoom-1)) {
+				 if(i != x && j == (heightRoom-1)) 
 					 tiles[i][j] = 2;
-				 }
 				 
-				 if(i == widthRoom-1) {
+				 
+				 if(j == y && x != (widthRoom-1)) 
 					 tiles[i][j] = 2;
-				 }
+				 
+				 
+				 if(i == widthRoom-1) 
+					 tiles[i][j] = 2;
+				 
+				 
+				 if( i == xMiddle && j ==yMiddle)
+					 tiles[i][j] = 1;
 
 			 }
 		 }
 	}
 	
-	private void corridor(int x, int y, int width, int length) {
-		int widthCorridor = x + width;
-		int lengthCorridor = y + length;
+	private void corridor(int x, int y, int height, int width) {
+		 int heightRoom = y + height;
+		 int widthRoom = x + width;
+		 
+		 for(int i=x; i < widthRoom; i++) {
+			 for(int j=y; j < heightRoom; j++) {
+				// tiles[i][j] = 1;	 
+				 
 		
-		for(int i = x; i < widthCorridor;i++) {
-			for(int j = y; j < lengthCorridor;j++) {
+				 
+				 
+				 if(j == (heightRoom-1)) 
+					 tiles[i][j] = 2;
+				 
+				 
+				 if(j == y && x != (widthRoom-1)) 
+					 tiles[i][j] = 2;
+				 
+				 
+				
+				 
+				 
+				 if(i == widthRoom-1 && j ==height/2)
+					 tiles[i][j] = 1;
 
-				tiles[i][j] = 1;	
-				
-			
-			
-				
-				if(j == y && x != widthCorridor)
-					tiles[i][j] = 2;
-				
-				if(j == y+length && x != widthCorridor)
-					tiles[i][j] = 2;
-				
-	
-			}
-		}
+			 }
+		 }
 	}
 
 	
