@@ -90,7 +90,8 @@ public class World {
 		height = 100;
 		tiles = new int[height][width];
 		
-		room(05,0,15,15);
+		//room(1,0,5,5);
+		corridor(1,1,4,5);
 	}
 	
 	private void room(int x, int y, int height, int width) {
@@ -101,7 +102,7 @@ public class World {
 			 for(int j=y; j < heightRoom; j++) {
 				 tiles[i][j] = 1;	 
 				 
-				 if(i == x && j != heightRoom) {
+				 if(i == x ) {
 					 tiles[i][j] = 2;
 				 }
 				 
@@ -119,6 +120,29 @@ public class World {
 
 			 }
 		 }
+	}
+	
+	private void corridor(int x, int y, int width, int length) {
+		int widthCorridor = x + width;
+		int lengthCorridor = y + length;
+		
+		for(int i = x; i < widthCorridor;i++) {
+			for(int j = y; j < lengthCorridor;j++) {
+
+				tiles[i][j] = 1;	
+				
+			
+			
+				
+				if(j == y && x != widthCorridor)
+					tiles[i][j] = 2;
+				
+				if(j == y+length && x != widthCorridor)
+					tiles[i][j] = 2;
+				
+	
+			}
+		}
 	}
 
 	
