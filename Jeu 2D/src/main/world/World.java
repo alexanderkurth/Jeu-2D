@@ -86,8 +86,8 @@ public class World {
 		height = 100;
 		tiles = new int[height][width];
 		
-		room(3,3,11,11);
-		//corridor(1,10,5,5);
+		room(0,0,11,11);
+		corridor(11,3,5,5);
 	}
 	
 	private void room(int x, int y, int height, int width) {
@@ -119,6 +119,9 @@ public class World {
 				 
 				 if( i == xMiddle && j ==yMiddle)
 					 tiles[i][j] = 1;
+				 
+				 if( i == widthRoom-1 && j ==yMiddle)
+					 tiles[i][j] = 1;
 
 			 }
 		 }
@@ -128,12 +131,11 @@ public class World {
 		 int heightRoom = y + height;
 		 int widthRoom = x + width;
 		 
+		 int xMiddle = (x + widthRoom)/2;
+		 int yMiddle = (y +heightRoom)/2;
+		 
 		 for(int i=x; i < widthRoom; i++) {
 			 for(int j=y; j < heightRoom; j++) {
-				// tiles[i][j] = 1;	 
-				 
-		
-				 
 				 
 				 if(j == (heightRoom-1)) 
 					 tiles[i][j] = 2;
@@ -143,10 +145,7 @@ public class World {
 					 tiles[i][j] = 2;
 				 
 				 
-				
-				 
-				 
-				 if(i == widthRoom-1 && j ==height/2)
+				 if( i == xMiddle && j ==yMiddle)
 					 tiles[i][j] = 1;
 
 			 }
