@@ -97,6 +97,10 @@ public class World {
 		 int xMiddle = (x + widthRoom)/2;
 		 int yMiddle = (y +heightRoom)/2;
 		 
+		 Random rand = new Random();
+		 int nombreAleatoire = rand.nextInt(4 - 1 + 1) + 1;
+		 System.out.println(nombreAleatoire);
+		 
 		 for(int i=x; i < widthRoom; i++) {
 			 for(int j=y; j < heightRoom; j++) {
 								 
