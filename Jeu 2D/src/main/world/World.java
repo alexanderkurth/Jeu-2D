@@ -1,13 +1,13 @@
 package main.world;
 
 import java.awt.Graphics;
-import java.util.Random;
 
 import main.Handler;
 import main.entities.EntityManager;
 import main.entities.creatures.Player;
 import main.tile.Tile;
-import main.utils.Utils;
+import main.world.dungeon.DungeonManager;
+import main.world.dungeon.Room;
 
 public class World {
 
@@ -18,9 +18,13 @@ public class World {
 	//Coordonnees joueur
 	private int spawnX, spawnY;
 	//Tuiles niveau
-	private int[][] tiles;
+	private static int[][] tiles;
 	//Entities
 	private EntityManager entityManager;
+	
+	private Room room;
+	
+	private DungeonManager dungeonManager;
 	
 	public World(Handler handler, String path){
 		this.handler = handler;
@@ -28,6 +32,8 @@ public class World {
 		// Temporary entity code!
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
+		
+		dungeonManager = new DungeonManager(handler, new Room(0,0,11,11));
 		//loadWorld(path);
 		createWorld();
 		
@@ -59,7 +65,7 @@ public class World {
 		if(x < 0 || y < 0 || x >= width || y >= height)
 			return Tile.grassTile;
 		
-		Tile t = Tile.tiles[tiles[x][y]];
+		Tile t = Tile.tiles[getTiles()[x][y]];
 		if(t == null)
 			return Tile.dirtTile;
 		return t;
@@ -84,12 +90,21 @@ public class World {
 	public void createWorld() {
 		width = 100;
 		height = 100;
-		tiles = new int[height][width];
+		setTiles(new int[height][width]);
 		
-		room(0,0,11,11);
+		//room = new Room(0,0,11,11);
+		//room.createRoom();
+		createRooms();
+		//room(0,0,11,11);
+		
 		corridor(11,4,3,5);
+
 	}
 	
+	public void createRooms() {
+		dungeonManager.create(room);
+	}
+	/*
 	private void room(int x, int y, int height, int width) {
 		 int heightRoom = y + height;
 		 int widthRoom = x + width;
@@ -129,7 +144,7 @@ public class World {
 			 }
 		 }
 	}
-	
+	*/
 	private void corridor(int x, int y, int height, int width) {
 		 int heightCorridor = y + height;
 		 int widthCorridor = x + width;
@@ -141,15 +156,15 @@ public class World {
 			 for(int j=y; j < heightCorridor; j++) {
 				 
 				 if(j == (heightCorridor-1)) 
-					 tiles[i][j] = 2;
+					 getTiles()[i][j] = 2;
 				 
 				 
 				 if(j == y && x != (widthCorridor-1)) 
-					 tiles[i][j] = 2;
+					 getTiles()[i][j] = 2;
 				 
 				 
 				 if( i == xMiddle && j ==yMiddle)
-					 tiles[i][j] = 1;
+					 getTiles()[i][j] = 1;
 
 			 }
 		 }
@@ -169,6 +184,13 @@ public class World {
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
-	
+
+	public static int[][] getTiles() {
+		return tiles;
+	}
+
+	public static void setTiles(int[][] tiles) {
+		World.tiles = tiles;
+	}
 }
 
