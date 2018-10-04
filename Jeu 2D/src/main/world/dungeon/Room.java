@@ -16,7 +16,7 @@ public class Room extends Dungeon{
 	}
 
 	public void createRoom() {
-		c.corridoVertical();
+		c.corridorHorizontal();
 		int heightRoom = y + height;
 		int widthRoom = x + width;
 
