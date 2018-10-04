@@ -23,43 +23,14 @@ public class Room extends Dungeon{
 		//bas
 		int widthTopLeft = xMiddle - width ;
 		int heightTopLeft = yMiddle-height ;
-		
-		
-	//	int //
+
+
+		//	int //
 
 		Random rand = new Random();
 		int nombreAleatoire = rand.nextInt(4 - 1 + 1) + 1;
 		//System.out.println(nombreAleatoire);
-		/*
-		for(int i=x; i < widthRoom; i++) {
-			for(int j=y; j < heightRoom; j++) {
 
-				if(i == x ) 
-					World.getTiles()[i][j] = 2;
-
-
-				if(i != x && j == (heightRoom-1)) 
-					World.getTiles()[i][j]= 2;
-
-
-				if(j == y && x != (widthRoom-1)) 
-					World.getTiles()[i][j] = 2;
-
-
-				if(i == widthRoom-1) 
-					World.getTiles()[i][j] = 2;
-
-
-				if( i == xMiddle && j ==yMiddle)
-					World.getTiles()[i][j] = 1;
-
-				if( i == widthRoom-1 && j ==yMiddle)
-					World.getTiles()[i][j] = 1;
-
-			}
-
-		}
-		*/
 		//En haut à droite
 		for (int i = xMiddle ; i < widthBottomRight ; i++) {
 			for (int j = yMiddle ; j > heightTopLeft ; j--) {
@@ -73,11 +44,11 @@ public class Room extends Dungeon{
 
 			}
 		}
-		
+
 		//En haut en gauche
 		for (int i = xMiddle ; i > widthTopLeft ; i--) {
 			for (int j = yMiddle ; j > heightTopLeft ; j--) {
-				//World.getTiles()[i][j] = 1;
+
 				//Mur droite haut
 				if(i == widthTopLeft+1)
 					World.getTiles()[i][j] = 2;
@@ -86,40 +57,41 @@ public class Room extends Dungeon{
 					World.getTiles()[i][j] = 2;
 			}
 		}
-		
+
 		//En bas à gauche
 		for (int i = xMiddle ; i > widthBottomLeft ; i--) {
 			for (int j = yMiddle ; j < heightBottomRight ; j++) {
-				//World.getTiles()[i][j] = 1;
-				
+
 				//Mur gauche bas
 				if(i == widthBottomLeft+1)
 					World.getTiles()[i][j] = 2;
 				//Mur bas gauche
 				if(j == heightBottomRight-1)
 					World.getTiles()[i][j] = 2;
-		}
-	}
-		
-		//En bas à droite
-			for (int i = xMiddle ; i < widthBottomRight ; i++) {
-				for (int j = yMiddle ; j < heightBottomRight ; j++) {
-					
-					if(i == xMiddle && j == yMiddle)
-						World.getTiles()[i][j] = 2;
-					
-					//Mur droite bas
-					if(i ==widthBottomRight-1 ) 
-						World.getTiles()[i][j] = 2;
-					
-					//Mur bas droite
-					if(j == heightBottomRight-1)
-						World.getTiles()[i][j] = 2;
 			}
 		}
-			
-			System.out.println(widthBottomLeft);
-				}
-			
 
+		//En bas à droite
+		for (int i = xMiddle ; i < widthBottomRight ; i++) {
+			for (int j = yMiddle ; j < heightBottomRight ; j++) {
+
+
+				//Mur droite bas
+				if(i ==widthBottomRight-1 ) 
+					World.getTiles()[i][j] = 2;
+
+				//Mur bas droite
+				if(j == heightBottomRight-1)
+					World.getTiles()[i][j] = 2;
+				
+
+				if(i == xMiddle && j == heightBottomRight-1)
+					World.getTiles()[i][j] = 1;
+			}
+		}
+
+		System.out.println(widthBottomLeft);
 	}
+
+
+}
