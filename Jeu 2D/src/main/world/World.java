@@ -33,7 +33,7 @@ public class World {
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
 		
-		dungeonManager = new DungeonManager(handler, new Room(0,0,11,11));
+		dungeonManager = new DungeonManager(handler, new Room(9,5,5,5));
 		//loadWorld(path);
 		createWorld();
 		
@@ -97,7 +97,7 @@ public class World {
 		createRooms();
 		//room(0,0,11,11);
 		
-		corridor(11,4,3,5);
+		//corridor(11,4,3,5);
 
 	}
 	

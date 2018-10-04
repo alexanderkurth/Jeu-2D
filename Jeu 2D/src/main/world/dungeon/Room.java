@@ -16,11 +16,14 @@ public class Room extends Dungeon{
 
 		int xMiddle = (x + widthRoom)/2;
 		int yMiddle = (y +heightRoom)/2;
+		
+		int widthBottomRight =  xMiddle + width;
+		int heightBottomRight = yMiddle + height;
 
 		Random rand = new Random();
 		int nombreAleatoire = rand.nextInt(4 - 1 + 1) + 1;
-		System.out.println(nombreAleatoire);
-
+		//System.out.println(nombreAleatoire);
+		/*
 		for(int i=x; i < widthRoom; i++) {
 			for(int j=y; j < heightRoom; j++) {
 
@@ -49,5 +52,66 @@ public class Room extends Dungeon{
 			}
 
 		}
+		*/
+		/*
+		//Mur haut gauche
+		for(int i = (xMiddle-x)+1 ; i < widthBottomRight -x; i++) {
+			for(int j = yMiddle - y+1; j < yMiddle ; j++) {
+				World.getTiles()[i][j] = 1;
+				
+				if(i == xMiddle-x+1)
+					World.getTiles()[i][j] = 2;
+				if(j == yMiddle-y+1)
+						World.getTiles()[i][j] = 2;
+			}
+		}
+		
+		
+		//Mur haut droite
+		for(int i = xMiddle ; i < widthBottomRight ; i++) {
+			for(int j = yMiddle - y+1; j < yMiddle ; j++) {
+				
+						//Mur droit haut
+					 	if( i == widthBottomRight-1)
+					 		World.getTiles()[i][j] = 2;
+					 	//Mur droite haut
+					 	if(j ==  yMiddle - y+1)
+					 		World.getTiles()[i][j] = 2;
+			}
+		}
+		
+		
+		//En bas à gauche
+		for(int i = (xMiddle-x)+1 ; i < widthBottomRight-x ; i++) {
+			for(int j = yMiddle ; j < heightBottomRight ; j ++) {
+			
+				//Mur gauche bas
+				if(i == xMiddle -4) 
+					World.getTiles()[i][j] = 2;
+				
+				//Mur bas droite
+				if(j == heightBottomRight-1)
+					World.getTiles()[i][j] = 2;
+			}
+		}
+		*/
+		//En bas à droite
+			for (int i = xMiddle ; i < widthBottomRight ; i++) {
+				for (int j = yMiddle ; j < heightBottomRight ; j++) {
+					
+					if(i == xMiddle && j == yMiddle)
+						World.getTiles()[i][j] = 2;
+					
+					//Mur droite bas
+					if(i ==widthBottomRight-1 ) 
+						World.getTiles()[i][j] = 2;
+					
+					//Mur bas droite
+					if(j == heightBottomRight-1)
+						World.getTiles()[i][j] = 2;
+			}
+		}
+				}
+			
+
 	}
-}
