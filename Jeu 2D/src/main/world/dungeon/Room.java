@@ -5,12 +5,18 @@ import java.util.Random;
 import main.world.World;
 
 public class Room extends Dungeon{
+	
+	Corridor c = new Corridor(3,3,5,3);
+	
+	private int xDoor;
+	private int yDoor;
 
 	public Room(int x, int y, int width, int height) {
 		super(x, y, width, height);
 	}
 
 	public void createRoom() {
+		c.corridoVertical();
 		int heightRoom = y + height;
 		int widthRoom = x + width;
 
@@ -24,12 +30,8 @@ public class Room extends Dungeon{
 		int widthTopLeft = xMiddle - width ;
 		int heightTopLeft = yMiddle-height ;
 
-
-		//	int //
-
 		Random rand = new Random();
 		int nombreAleatoire = rand.nextInt(4 - 1 + 1) + 1;
-		//System.out.println(nombreAleatoire);
 
 		//En haut à droite
 		for (int i = xMiddle ; i < widthBottomRight ; i++) {
@@ -85,13 +87,35 @@ public class Room extends Dungeon{
 					World.getTiles()[i][j] = 2;
 				
 
-				if(i == xMiddle && j == heightBottomRight-1)
+				if(i == xMiddle && j == heightBottomRight-1) {
 					World.getTiles()[i][j] = 1;
+				}
+					
 			}
 		}
 
-		System.out.println(widthBottomLeft);
+		
 	}
+
+	
+	//Getters & Setters
+	public int getxDoor() {
+		return xDoor;
+	}
+
+	public void setxDoor(int xDoor) {
+		this.xDoor = xDoor;
+	}
+
+	public int getyDoor() {
+		return yDoor;
+	}
+
+	public void setyDoor(int yDoor) {
+		this.yDoor = yDoor;
+	}
+	
+	
 
 
 }

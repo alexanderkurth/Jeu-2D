@@ -92,85 +92,15 @@ public class World {
 		height = 100;
 		setTiles(new int[height][width]);
 		
-		//room = new Room(0,0,11,11);
-		//room.createRoom();
 		createRooms();
-		//room(0,0,11,11);
-		
-		//corridor(11,4,3,5);
+
 
 	}
 	
 	public void createRooms() {
 		dungeonManager.create(room);
 	}
-	/*
-	private void room(int x, int y, int height, int width) {
-		 int heightRoom = y + height;
-		 int widthRoom = x + width;
-		 
-		 int xMiddle = (x + widthRoom)/2;
-		 int yMiddle = (y +heightRoom)/2;
-		 
-		 Random rand = new Random();
-		 int nombreAleatoire = rand.nextInt(4 - 1 + 1) + 1;
-		 System.out.println(nombreAleatoire);
-		 
-		 for(int i=x; i < widthRoom; i++) {
-			 for(int j=y; j < heightRoom; j++) {
-								 
-				 if(i == x ) 
-					 tiles[i][j] = 2;
-				 
-				 
-				 if(i != x && j == (heightRoom-1)) 
-					 tiles[i][j] = 2;
-				 
-				 
-				 if(j == y && x != (widthRoom-1)) 
-					 tiles[i][j] = 2;
-				 
-				 
-				 if(i == widthRoom-1) 
-					 tiles[i][j] = 2;
-				 
-				 
-				 if( i == xMiddle && j ==yMiddle)
-					 tiles[i][j] = 1;
-				 
-				 if( i == widthRoom-1 && j ==yMiddle)
-					 tiles[i][j] = 1;
 
-			 }
-		 }
-	}
-	*/
-	private void corridor(int x, int y, int height, int width) {
-		 int heightCorridor = y + height;
-		 int widthCorridor = x + width;
-		 
-		 int xMiddle = (x + widthCorridor)/2;
-		 int yMiddle = (y +heightCorridor)/2;
-		 
-		 for(int i=x; i < widthCorridor; i++) {
-			 for(int j=y; j < heightCorridor; j++) {
-				 
-				 if(j == (heightCorridor-1)) 
-					 getTiles()[i][j] = 2;
-				 
-				 
-				 if(j == y && x != (widthCorridor-1)) 
-					 getTiles()[i][j] = 2;
-				 
-				 
-				 if( i == xMiddle && j ==yMiddle)
-					 getTiles()[i][j] = 1;
-
-			 }
-		 }
-	}
-
-	
 	//Getters & Setters
 	
 	public int getWidth(){
