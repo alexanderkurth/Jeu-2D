@@ -19,6 +19,9 @@ public class Room extends Dungeon{
 		
 		int widthBottomRight =  xMiddle + width;
 		int heightBottomRight = yMiddle + height;
+		
+		int widthBottomLeft = xMiddle - width;
+		int heightBottomLeft = yMiddle - height;
 
 		Random rand = new Random();
 		int nombreAleatoire = rand.nextInt(4 - 1 + 1) + 1;
@@ -95,6 +98,20 @@ public class Room extends Dungeon{
 			}
 		}
 		*/
+		//En bas à gauche
+		for (int i = xMiddle ; i > widthBottomLeft ; i--) {
+			for (int j = yMiddle ; j < heightBottomRight ; j++) {
+				World.getTiles()[i][j] = 1;
+				
+				//Mur gauche bas
+				if(i == widthBottomLeft+1)
+					World.getTiles()[i][j] = 2;
+				//Mur bas gauche
+				if(j == heightBottomRight-1)
+					World.getTiles()[i][j] = 2;
+		}
+	}
+		
 		//En bas à droite
 			for (int i = xMiddle ; i < widthBottomRight ; i++) {
 				for (int j = yMiddle ; j < heightBottomRight ; j++) {
@@ -111,6 +128,8 @@ public class Room extends Dungeon{
 						World.getTiles()[i][j] = 2;
 			}
 		}
+			
+			System.out.println(widthBottomLeft);
 				}
 			
 
