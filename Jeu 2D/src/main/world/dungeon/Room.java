@@ -16,7 +16,7 @@ public class Room extends Dungeon{
 	}
 
 	public void createRoom() {
-		c.corridorHorizontal();
+		//c.corridorHorizontal();
 		int heightRoom = y + height;
 		int widthRoom = x + width;
 
@@ -44,6 +44,7 @@ public class Room extends Dungeon{
 				if(j == heightTopLeft+1)
 					World.getTiles()[i][j] = 2;
 
+
 			}
 		}
 
@@ -57,6 +58,10 @@ public class Room extends Dungeon{
 				//Mut haut droite
 				if(j == heightTopLeft+1)
 					World.getTiles()[i][j] = 2;
+				
+				//Porte Milieu
+				if(i == xMiddle && j == heightTopLeft+1)
+					World.getTiles()[i][j] = 1;
 			}
 		}
 
@@ -70,6 +75,10 @@ public class Room extends Dungeon{
 				//Mur bas gauche
 				if(j == heightBottomRight-1)
 					World.getTiles()[i][j] = 2;
+				
+				//PorteMilieu
+				if(i== widthBottomLeft+1 && j == yMiddle)
+					World.getTiles()[i][j] = 1;
 			}
 		}
 
@@ -86,8 +95,12 @@ public class Room extends Dungeon{
 				if(j == heightBottomRight-1)
 					World.getTiles()[i][j] = 2;
 				
-
+				//Porte Milieu
 				if(i == xMiddle && j == heightBottomRight-1) {
+					World.getTiles()[i][j] = 1;
+				}
+				
+				if( i == widthBottomRight-1 && j == yMiddle) {
 					World.getTiles()[i][j] = 1;
 				}
 					
