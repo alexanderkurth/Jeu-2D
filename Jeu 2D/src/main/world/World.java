@@ -1,6 +1,8 @@
 package main.world;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import main.Handler;
 import main.entities.EntityManager;
@@ -26,6 +28,8 @@ public class World {
 	
 	private DungeonManager dungeonManager;
 	
+	private Rectangle bounds ;
+	
 	public World(Handler handler, String path){
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
@@ -40,6 +44,10 @@ public class World {
 		
 		entityManager.getPlayer().setX(200);
 		entityManager.getPlayer().setY(200);
+		
+
+		
+	
 	}
 	
 	public void tick(){
@@ -60,6 +68,7 @@ public class World {
 		}
 		//Entities
 		entityManager.render(g);
+
 	}
 	
 	public Tile getTile(int x, int y){
