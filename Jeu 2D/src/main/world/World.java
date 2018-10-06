@@ -34,6 +34,7 @@ public class World {
 		
 		
 		dungeonManager = new DungeonManager(handler, new Room(5,4,3,3));
+		dungeonManager.addDungeon(new Room(12,12,9,9));
 		//loadWorld(path);
 		createWorld();
 		

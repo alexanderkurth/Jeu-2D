@@ -6,7 +6,7 @@ import main.world.World;
 
 public class Room extends Dungeon{
 	
-	Corridor c = new Corridor(3,3,5,3);
+	Corridor c = new Corridor(3,4,5,3);
 	
 	private int xDoor;
 	private int yDoor;

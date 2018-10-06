@@ -26,6 +26,16 @@ public class DungeonManager {
 	}
 
 
+
+	
+	public void create(Room room) {
+		for(Room r : rooms) {
+			r.createRoom();
+		}
+	}
+	
+	
+	//Getters & Setters
 	public ArrayList<Room> getDungeons() {
 		return rooms;
 	}
@@ -33,12 +43,6 @@ public class DungeonManager {
 
 	public void setDungeons(ArrayList<Room> room) {
 		this.rooms = room;
-	}
-	
-	public void create(Room room) {
-		for(Room r : rooms) {
-			r.createRoom();
-		}
 	}
 
 }
