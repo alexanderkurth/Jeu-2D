@@ -1,19 +1,30 @@
 package main.world.dungeon;
 
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.Random;
 
+import main.Handler;
 import main.world.World;
 
 public class Room extends Dungeon{
 	
-	Corridor c = new Corridor(3,4,5,3);
+	
 	
 	private int xDoor;
 	private int yDoor;
+	Handler handler;
+	
+	Rectangle rectangle;
+	Corridor c = new Corridor(handler, 3,4,5,3);
 
-	public Room(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	public Room(Handler handler,int x, int y, int width, int height) {
+		super(handler, x, y, width, height);
+		rectangle = new Rectangle(x,y,width, height);
 	}
+	
+
+
 
 	public void createRoom() {
 		//c.corridorHorizontal();
@@ -127,6 +138,15 @@ public class Room extends Dungeon{
 	public void setyDoor(int yDoor) {
 		this.yDoor = yDoor;
 	}
+	
+	public Rectangle getRectangle() {
+		return rectangle;
+	}
+
+	public void setRectangle(Rectangle rectangle) {
+		this.rectangle = rectangle;
+	}
+
 	
 	
 
