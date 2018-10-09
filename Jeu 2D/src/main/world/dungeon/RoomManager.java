@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import main.Handler;
 
-public class DungeonManager {
+public class RoomManager {
 	
 	private Handler handler;
 	private Corridor corridor;
@@ -12,7 +12,7 @@ public class DungeonManager {
 	private ArrayList<Room> rooms;
 	
 //Constructeur
-	public DungeonManager(Handler handler, Room room) {
+	public RoomManager(Handler handler, Room room) {
 		this.handler = handler;
 		this.room = room;
 		rooms = new ArrayList<Room>();
