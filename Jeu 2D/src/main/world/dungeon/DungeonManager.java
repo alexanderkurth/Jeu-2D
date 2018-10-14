@@ -13,12 +13,13 @@ public class DungeonManager {
 	private Corridor corridor;
 	private Room room;
 	private ArrayList<Room> rooms;
+	private int nombreRomms;
 	
-	public DungeonManager(Handler handler, Room room) {
+	public DungeonManager(Handler handler) {
 		this.handler = handler;
-		this.room = room;
+		//this.room = room;
 		rooms = new ArrayList<Room>();
-		addDungeon(room);
+		//addDungeon(room);
 	}
 
 	

@@ -8,8 +8,8 @@ import main.Handler;
 import main.entities.EntityManager;
 import main.entities.creatures.Player;
 import main.tile.Tile;
-import main.world.dungeon.RoomManager;
 import main.world.dungeon.Room;
+import main.world.dungeon.RoomManager;
 
 public class World {
 
@@ -26,7 +26,7 @@ public class World {
 	
 	private Room room;
 	
-	private RoomManager dungeonManager;
+	private RoomManager roomManager;
 	
 	private Rectangle bounds ;
 	
@@ -37,8 +37,10 @@ public class World {
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
 		
-		dungeonManager = new RoomManager(handler, new Room(handler, 5,4,3,3));
-		dungeonManager.addRoom(new Room(handler, 12,12,9,9));
+		roomManager = new RoomManager(handler);
+		//dungeonManager.addRoom(new Room(handler, 12,12,9,9));
+		roomManager.addRoom(new Room(handler, 12,12,9,9));
+		roomManager.addRoom(new Room(handler, 3,3,5,5));
 		//loadWorld(path);
 		createWorld();
 		
@@ -109,7 +111,8 @@ public class World {
 	}
 	
 	public void createRooms() {
-		dungeonManager.create(room);
+		//roomManager.create(room);
+		roomManager.create(roomManager.getRooms());
 		
 	}
 

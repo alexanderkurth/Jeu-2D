@@ -12,11 +12,11 @@ public class RoomManager {
 	private ArrayList<Room> rooms;
 	
 //Constructeur
-	public RoomManager(Handler handler, Room room) {
+	public RoomManager(Handler handler) {
 		this.handler = handler;
-		this.room = room;
+		//this.room = room;
 		rooms = new ArrayList<Room>();
-		addRoom(room);
+		//addRoom(room);
 	}
 	
 //Ajout room
@@ -25,7 +25,7 @@ public class RoomManager {
 	}
 
 //Creation de toutes les rooms
-	public void create(Room room) {
+	public void create(ArrayList<Room> rooms) {
 		for(Room r : rooms) {
 			r.createRoom();
 		}
