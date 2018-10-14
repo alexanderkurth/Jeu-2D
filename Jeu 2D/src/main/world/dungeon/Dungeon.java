@@ -1,6 +1,10 @@
 package main.world.dungeon;
 
-public class Dungeon {
+import java.awt.Graphics;
+
+import main.Handler;
+
+public abstract class Dungeon {
 
 	protected int x;
 	protected int y;
@@ -8,7 +12,10 @@ public class Dungeon {
 	protected int width;
 	protected int height;
 	
-	public Dungeon(int x, int y, int width, int height) {
+	protected Handler handler;
+	
+	public Dungeon(Handler handler,int x, int y, int width, int height) {
+		this.handler = handler;
 		this.x = x;
 		this.y = y;
 		this.width = width;
