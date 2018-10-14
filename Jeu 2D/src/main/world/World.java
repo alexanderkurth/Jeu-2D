@@ -30,6 +30,8 @@ public class World {
 	
 	private Rectangle bounds ;
 	
+	private int nombreRooms = 10;
+	
 	public World(Handler handler, String path){
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
@@ -39,17 +41,14 @@ public class World {
 		
 		roomManager = new RoomManager(handler);
 		//dungeonManager.addRoom(new Room(handler, 12,12,9,9));
-		roomManager.addRoom(new Room(handler, 12,12,9,9));
-		roomManager.addRoom(new Room(handler, 3,3,5,5));
+		//roomManager.addRoom(new Room(handler, 12,12,9,9));
+		//addRoom(new Room(handler, 3,3,5,5));
 		//loadWorld(path);
 		createWorld();
 		
 		entityManager.getPlayer().setX(200);
 		entityManager.getPlayer().setY(200);
-		
 
-		
-	
 	}
 	
 	public void tick(){
