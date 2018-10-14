@@ -103,12 +103,14 @@ public class World {
 		setTiles(new int[height][width]);
 		
 		createRooms();
+		
 
 
 	}
 	
 	public void createRooms() {
 		dungeonManager.create(room);
+		
 	}
 
 	//Getters & Setters

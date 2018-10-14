@@ -1,5 +1,6 @@
 package main.world.dungeon;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 import main.Handler;
@@ -31,6 +32,12 @@ public class DungeonManager {
 	public void create(Room room) {
 		for(Room r : rooms) {
 			r.createRoom();
+		}
+	}
+	
+	public void render(Graphics g,Room room){
+		for(Room r : rooms) {
+			r.render(g);
 		}
 	}
 	

@@ -1,5 +1,8 @@
 package main.world.dungeon;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.Random;
 
 import main.world.World;
@@ -8,11 +11,14 @@ public class Room extends Dungeon{
 	
 	Corridor c = new Corridor(3,4,5,3);
 	
+	private Rectangle bounds;
+	
 	private int xDoor;
 	private int yDoor;
 
 	public Room(int x, int y, int width, int height) {
 		super(x, y, width, height);
+		bounds = new Rectangle(x,y,width,height);
 	}
 
 	public void createRoom() {
@@ -108,6 +114,11 @@ public class Room extends Dungeon{
 		}
 
 		
+	}
+	
+	public void render(Graphics g){
+		g.setColor(Color.RED);
+		g.drawRect(bounds.x,bounds.y,bounds.width,bounds.height);
 	}
 
 	
