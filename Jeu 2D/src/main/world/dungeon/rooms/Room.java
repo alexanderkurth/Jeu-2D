@@ -1,17 +1,11 @@
 package main.world.dungeon.rooms;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.Random;
 
-import main.Handler;
 import main.world.World;
 import main.world.dungeon.Dungeon;
 
 public class Room extends Dungeon{
-	
-	private Rectangle bounds;
 	
 	private int xDoor;
 	private int yDoor;
@@ -48,8 +42,6 @@ public class Room extends Dungeon{
 				//Mur haut droite
 				if(j == heightTopLeft+1)
 					World.getTiles()[i][j] = 2;
-
-
 			}
 		}
 
@@ -113,11 +105,6 @@ public class Room extends Dungeon{
 		}
 
 		
-	}
-	
-	public void render(Graphics g){
-		g.setColor(Color.RED);
-		g.drawRect(bounds.x,bounds.y,bounds.width,bounds.height);
 	}
 
 	

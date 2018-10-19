@@ -13,13 +13,17 @@ import main.world.dungeon.rooms.Room;
 import main.world.dungeon.rooms.RoomSpawn;
 
 public class World {
+	
+	//scale
+	private int scale = 64;
 
 	//handler
 	private Handler handler;
 	//Longueur et largeur
 	private int width, height;
 	//Coordonnees joueur
-	private int spawnX, spawnY = 0;
+	private int spawnX = 55;
+	private int spawnY = 55;
 	//Tuiles niveau
 	private static int[][] tiles;
 	//Entities
@@ -36,7 +40,7 @@ public class World {
 		// Temporary entity code!
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
-		spawn = new RoomSpawn(50, 50, 10, 10);
+		spawn = new RoomSpawn(50, 50, 5, 5);
 		
 		//Room Manager
 		roomManager = new RoomManager(handler);
@@ -47,8 +51,8 @@ public class World {
 		//loadWorld(path);
 		createWorld();
 		
-		entityManager.getPlayer().setX(64*50);
-		entityManager.getPlayer().setY(64*50);
+		entityManager.getPlayer().setX(scale*spawnX);
+		entityManager.getPlayer().setY(scale*spawnY);
 	}
 	
 	public void tick(){
