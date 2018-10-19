@@ -3,6 +3,7 @@ package main.world.dungeon;
 import java.util.ArrayList;
 
 import main.Handler;
+import main.world.dungeon.rooms.Room;
 
 public class RoomManager {
 	
@@ -14,9 +15,7 @@ public class RoomManager {
 //Constructeur
 	public RoomManager(Handler handler) {
 		this.handler = handler;
-		//this.room = room;
 		rooms = new ArrayList<Room>();
-		//addRoom(room);
 	}
 	
 //Ajout room

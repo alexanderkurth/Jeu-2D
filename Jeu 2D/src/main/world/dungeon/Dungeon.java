@@ -11,11 +11,9 @@ public abstract class Dungeon {
 	
 	protected int width;
 	protected int height;
+
 	
-	protected Handler handler;
-	
-	public Dungeon(Handler handler,int x, int y, int width, int height) {
-		this.handler = handler;
+	public Dungeon(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;

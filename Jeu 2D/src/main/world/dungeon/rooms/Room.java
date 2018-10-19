@@ -1,4 +1,4 @@
-package main.world.dungeon;
+package main.world.dungeon.rooms;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,23 +7,21 @@ import java.util.Random;
 
 import main.Handler;
 import main.world.World;
+import main.world.dungeon.Dungeon;
 
 public class Room extends Dungeon{
-	
-	Corridor c = new Corridor(handler, 3,4,5,3);
 	
 	private Rectangle bounds;
 	
 	private int xDoor;
 	private int yDoor;
 
-	public Room(Handler handler,int x, int y, int width, int height) {
-		super(handler, x, y, width, height);
-		bounds = new Rectangle(x,y,width,height);
+	public Room(int x, int y, int width, int height) {
+		super(x, y, width, height);
+		//bounds = new Rectangle(x,y,width,height);
 	}
 
 	public void createRoom() {
-		//c.corridorHorizontal();
 		int heightRoom = y + height;
 		int widthRoom = x + width;
 

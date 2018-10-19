@@ -8,8 +8,9 @@ import main.Handler;
 import main.entities.EntityManager;
 import main.entities.creatures.Player;
 import main.tile.Tile;
-import main.world.dungeon.Room;
 import main.world.dungeon.RoomManager;
+import main.world.dungeon.rooms.Room;
+import main.world.dungeon.rooms.RoomSpawn;
 
 public class World {
 
@@ -18,37 +19,36 @@ public class World {
 	//Longueur et largeur
 	private int width, height;
 	//Coordonnees joueur
-	private int spawnX, spawnY;
+	private int spawnX, spawnY = 0;
 	//Tuiles niveau
 	private static int[][] tiles;
 	//Entities
 	private EntityManager entityManager;
 	
-	private Room room;
-	
 	private RoomManager roomManager;
 	
-	private Rectangle bounds ;
-	
-	private int nombreRooms = 10;
+	private RoomSpawn spawn;
 	
 	public World(Handler handler, String path){
 		this.handler = handler;
-		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		//Entity Manager
+		entityManager = new EntityManager(handler, new Player(handler, spawnX, spawnY));
 		// Temporary entity code!
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
+		spawn = new RoomSpawn(50, 50, 10, 10);
 		
+		//Room Manager
 		roomManager = new RoomManager(handler);
+		roomManager.addRoom(spawn);
 		//dungeonManager.addRoom(new Room(handler, 12,12,9,9));
-		//roomManager.addRoom(new Room(handler, 12,12,9,9));
-		//addRoom(new Room(handler, 3,3,5,5));
+		//roomManager.addRoom(new Room( 12,12,9,9));
+		//roomManager.addRoom(new Room( 3,3,5,5));
 		//loadWorld(path);
 		createWorld();
 		
-		entityManager.getPlayer().setX(200);
-		entityManager.getPlayer().setY(200);
-
+		entityManager.getPlayer().setX(64*50);
+		entityManager.getPlayer().setY(64*50);
 	}
 	
 	public void tick(){
@@ -110,7 +110,6 @@ public class World {
 	}
 	
 	public void createRooms() {
-		//roomManager.create(room);
 		roomManager.create(roomManager.getRooms());
 		
 	}

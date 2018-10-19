@@ -7,8 +7,8 @@ import main.world.World;
 
 public class Corridor extends Dungeon{
 
-	public Corridor(Handler handler,int x, int y, int width, int height) {
-		super(handler,x, y, width, height);
+	public Corridor(int x, int y, int width, int height) {
+		super(x, y, width, height);
 	}
 
 	public void corridorHorizontal() {
