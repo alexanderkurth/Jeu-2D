@@ -24,17 +24,43 @@ public class Room{
 		int j=yMiddle;
 		
 		World.getTiles()[i][j] = 1;
+		
+		int widthRight = xMiddle+this.width+1;
+		int heightTop = yMiddle+this.height+1;
+		System.out.println(widthRight +","+heightTop);
+		
+		int widthLeft = xMiddle-this.width;
+		int heightBottom = yMiddle-this.height;
+		System.out.println(widthLeft +","+heightBottom);
 
-		//
-		for(i = xMiddle+1; i < (xMiddle+width)+1 ; i++) {
-			for(j = yMiddle+1;j<(yMiddle+height)+1;j++) {
+		//coin inferieur droit
+		for(i = xMiddle+1; i < widthRight ; i++) {
+			for(j = yMiddle+1; j < heightTop ; j++) {
 				
-				if(i == xMiddle+width)
+				//Mur vertical
+				if(i == widthRight-1)
 					World.getTiles()[i][j] = 2;
-				if(j == yMiddle+width)
+				//Mur horizontal
+				if(j == heightTop-1)
 					World.getTiles()[i][j] = 2;
 			}
 		}
+		
+		//coin superieur gauche
+		for(int a=xMiddle-1; a > widthLeft-1 ; a--) {
+			for(int b=yMiddle-1; b > heightBottom-1 ; b--) {
+				//Mur vertical
+				if(a == widthLeft)
+					World.getTiles()[a][b] = 2;
+				//Mur horizontal
+				if(b == heightBottom)
+					World.getTiles()[a][b] = 2;
+			}
+		}
+		
+		
+		
+		
 		
 		/*
 		
