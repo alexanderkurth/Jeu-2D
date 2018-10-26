@@ -40,7 +40,7 @@ public class World {
 		// Temporary entity code!
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
-		spawn = new RoomSpawn(50, 50, 5, 5);
+		spawn = new RoomSpawn(5,5,3,3);
 		
 		//Room Manager
 		roomManager = new RoomManager(handler);
@@ -51,8 +51,8 @@ public class World {
 		//loadWorld(path);
 		createWorld();
 		
-		entityManager.getPlayer().setX(scale*spawnX);
-		entityManager.getPlayer().setY(scale*spawnY);
+		entityManager.getPlayer().setX(3);
+		entityManager.getPlayer().setY(3);
 	}
 	
 	public void tick(){

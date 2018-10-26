@@ -1,38 +1,44 @@
 package main.world.dungeon.rooms;
 
-import java.util.Random;
-
 import main.world.World;
-import main.world.dungeon.Dungeon;
 
-public class Room extends Dungeon{
+public class Room{
 	
-	private int xDoor;
-	private int yDoor;
-
+	private int x;
+	private int y;
+	private int height;
+	private int width;
+	
 	public Room(int x, int y, int width, int height) {
-		super(x, y, width, height);
-		//bounds = new Rectangle(x,y,width,height);
+		this.x=x;
+		this.y=y;
+		this.width=width;
+		this.height=height;
 	}
 
 	public void createRoom() {
-		int heightRoom = y + height;
-		int widthRoom = x + width;
+		int xMiddle = (x + height)/2;
+		int yMiddle = (y + width)/2;
+		
+		int i= xMiddle;
+		int j=yMiddle;
+		
+		World.getTiles()[i][j] = 1;
 
-		int xMiddle = (x + widthRoom)/2;
-		int yMiddle = (y +heightRoom)/2;
-		//bas
-		int widthBottomRight =  xMiddle + width;
-		int heightBottomRight = yMiddle + height;
-		int widthBottomLeft = xMiddle - width;
-		//bas
-		int widthTopLeft = xMiddle - width ;
-		int heightTopLeft = yMiddle-height ;
-
-		Random rand = new Random();
-		int nombreAleatoire = rand.nextInt(4 - 1 + 1) + 1;
-
-		//En haut à droite
+		//
+		for(i = xMiddle+1; i < (xMiddle+width)+1 ; i++) {
+			for(j = yMiddle+1;j<(yMiddle+height)+1;j++) {
+				
+				if(i == xMiddle+width)
+					World.getTiles()[i][j] = 2;
+				if(j == yMiddle+width)
+					World.getTiles()[i][j] = 2;
+			}
+		}
+		
+		/*
+		
+		//En haut ï¿½ droite
 		for (int i = xMiddle ; i < widthBottomRight ; i++) {
 			for (int j = yMiddle ; j > heightTopLeft ; j--) {
 
@@ -44,7 +50,7 @@ public class Room extends Dungeon{
 					World.getTiles()[i][j] = 2;
 			}
 		}
-
+		
 		//En haut en gauche
 		for (int i = xMiddle ; i > widthTopLeft ; i--) {
 			for (int j = yMiddle ; j > heightTopLeft ; j--) {
@@ -62,7 +68,7 @@ public class Room extends Dungeon{
 			}
 		}
 
-		//En bas à gauche
+		//En bas ï¿½ gauche
 		for (int i = xMiddle ; i > widthBottomLeft ; i--) {
 			for (int j = yMiddle ; j < heightBottomRight ; j++) {
 
@@ -79,7 +85,7 @@ public class Room extends Dungeon{
 			}
 		}
 
-		//En bas à droite
+		//En bas ï¿½ droite
 		for (int i = xMiddle ; i < widthBottomRight ; i++) {
 			for (int j = yMiddle ; j < heightBottomRight ; j++) {
 
@@ -104,28 +110,7 @@ public class Room extends Dungeon{
 			}
 		}
 
-		
+		*/
 	}
-
-	
-	//Getters & Setters
-	public int getxDoor() {
-		return xDoor;
-	}
-
-	public void setxDoor(int xDoor) {
-		this.xDoor = xDoor;
-	}
-
-	public int getyDoor() {
-		return yDoor;
-	}
-
-	public void setyDoor(int yDoor) {
-		this.yDoor = yDoor;
-	}
-	
-	
-
 
 }
