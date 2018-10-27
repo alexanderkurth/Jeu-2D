@@ -33,6 +33,20 @@ public class Room{
 		int heightBottom = yMiddle-this.height;
 		System.out.println(widthLeft +","+heightBottom);
 
+		
+		//coin supérieur droit
+		for(i = xMiddle+1; i < widthRight ; i++) {
+			for(j = yMiddle-1; j > heightBottom-1 ; j--) {
+				
+				//Mur vertical
+				if(i == widthRight-1)
+					World.getTiles()[i][j] = 2;
+				//Mur horizontal
+				if(j == heightBottom)
+					World.getTiles()[i][j] = 2;
+			}
+		}
+		
 		//coin inferieur droit
 		for(i = xMiddle+1; i < widthRight ; i++) {
 			for(j = yMiddle+1; j < heightTop ; j++) {
@@ -47,17 +61,30 @@ public class Room{
 		}
 		
 		//coin superieur gauche
-		for(int a=xMiddle-1; a > widthLeft-1 ; a--) {
-			for(int b=yMiddle-1; b > heightBottom-1 ; b--) {
+		for(i=xMiddle-1; i > widthLeft-1 ; i--) {
+			for(j=yMiddle-1; j > heightBottom-1 ; j--) {
 				//Mur vertical
-				if(a == widthLeft)
-					World.getTiles()[a][b] = 2;
+				if(i == widthLeft)
+					World.getTiles()[i][j] = 2;
 				//Mur horizontal
-				if(b == heightBottom)
-					World.getTiles()[a][b] = 2;
+				if(j == heightBottom)
+					World.getTiles()[i][j] = 2;
 			}
 		}
 		
+		//coin inferieur gauche
+		for(i = xMiddle - 1 ; i > widthLeft-1 ; i--) {
+			for (j = yMiddle + 1 ; j < heightTop ; j++) {
+				
+				//Mur vertical
+				if(i == widthLeft)
+					World.getTiles()[i][j] = 2;
+				//Mur vertical
+				if(j == heightTop-1)
+					World.getTiles()[i][j] = 2;
+			}
+		}
+
 		
 		
 		

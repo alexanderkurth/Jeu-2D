@@ -40,7 +40,7 @@ public class World {
 		// Temporary entity code!
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
-		spawn = new RoomSpawn(5,5,3,3);
+		spawn = new RoomSpawn(4,4,3,3);
 		
 		//Room Manager
 		roomManager = new RoomManager(handler);
