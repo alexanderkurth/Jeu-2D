@@ -9,40 +9,44 @@ public class Room{
 	private int height;
 	private int width;
 	
+	private int xMiddle;
+	private int yMiddle;
+	
 	public Room(int x, int y, int width, int height) {
 		this.x=x;
 		this.y=y;
 		this.width=width;
 		this.height=height;
+		
+		this.xMiddle = (this.x + this.height)/2;
+		this.yMiddle = (this.y + this.width)/2;
 	}
 
 	public void createRoom() {
-		int xMiddle = (x + height)/2;
-		int yMiddle = (y + width)/2;
 		
 		int i= xMiddle;
 		int j=yMiddle;
 		
 		World.getTiles()[i][j] = 1;
 		
-		int widthRight = xMiddle+this.width+1;
-		int heightTop = yMiddle+this.height+1;
+		int widthRight = xMiddle+width+1;
+		int heightTop = yMiddle+height+1;
 		System.out.println(widthRight +","+heightTop);
 		
-		int widthLeft = xMiddle-this.width;
-		int heightBottom = yMiddle-this.height;
+		int widthLeft = xMiddle-width-1;
+		int heightBottom = yMiddle-height-1;
 		System.out.println(widthLeft +","+heightBottom);
 
 		
 		//coin supérieur droit
 		for(i = xMiddle+1; i < widthRight ; i++) {
-			for(j = yMiddle-1; j > heightBottom-1 ; j--) {
+			for(j = yMiddle-1; j > heightBottom ; j--) {
 				
 				//Mur vertical
 				if(i == widthRight-1)
 					World.getTiles()[i][j] = 2;
 				//Mur horizontal
-				if(j == heightBottom)
+				if(j == heightBottom+1)
 					World.getTiles()[i][j] = 2;
 			}
 		}
@@ -61,23 +65,23 @@ public class Room{
 		}
 		
 		//coin superieur gauche
-		for(i=xMiddle-1; i > widthLeft-1 ; i--) {
-			for(j=yMiddle-1; j > heightBottom-1 ; j--) {
+		for(i=xMiddle-1; i > widthLeft ; i--) {
+			for(j=yMiddle-1; j > heightBottom ; j--) {
 				//Mur vertical
-				if(i == widthLeft)
+				if(i == widthLeft+1)
 					World.getTiles()[i][j] = 2;
 				//Mur horizontal
-				if(j == heightBottom)
+				if(j == heightBottom+1)
 					World.getTiles()[i][j] = 2;
 			}
 		}
 		
 		//coin inferieur gauche
-		for(i = xMiddle - 1 ; i > widthLeft-1 ; i--) {
+		for(i = xMiddle - 1 ; i > widthLeft ; i--) {
 			for (j = yMiddle + 1 ; j < heightTop ; j++) {
 				
 				//Mur vertical
-				if(i == widthLeft)
+				if(i == widthLeft+1)
 					World.getTiles()[i][j] = 2;
 				//Mur vertical
 				if(j == heightTop-1)
