@@ -12,6 +12,9 @@ public class Room{
 	private int xMiddle;
 	private int yMiddle;
 	
+	private int i;
+	private int j;
+	
 	public Room(int x, int y, int width, int height) {
 		this.x=x;
 		this.y=y;
@@ -23,19 +26,13 @@ public class Room{
 	}
 
 	public void createRoom() {
-		
-		int i= xMiddle;
-		int j=yMiddle;
-		
-		World.getTiles()[i][j] = 1;
-		
 		int widthRight = xMiddle+width+1;
 		int heightTop = yMiddle+height+1;
-		System.out.println(widthRight +","+heightTop);
+		//System.out.println(widthRight +","+heightTop);
 		
 		int widthLeft = xMiddle-width-1;
 		int heightBottom = yMiddle-height-1;
-		System.out.println(widthLeft +","+heightBottom);
+		//System.out.println(widthLeft +","+heightBottom);
 
 		
 		//coin supérieur droit
@@ -89,85 +86,46 @@ public class Room{
 			}
 		}
 
+		creerOuverture(widthRight, heightTop, widthLeft, heightBottom);
 		
-		
-		
-		
-		/*
-		
-		//En haut � droite
-		for (int i = xMiddle ; i < widthBottomRight ; i++) {
-			for (int j = yMiddle ; j > heightTopLeft ; j--) {
+	}
 
-				//Mur droite haut
-				if(i == widthBottomRight-1)
-					World.getTiles()[i][j] = 2;
-				//Mur haut droite
-				if(j == heightTopLeft+1)
-					World.getTiles()[i][j] = 2;
-			}
-		}
-		
-		//En haut en gauche
-		for (int i = xMiddle ; i > widthTopLeft ; i--) {
-			for (int j = yMiddle ; j > heightTopLeft ; j--) {
-
-				//Mur droite haut
-				if(i == widthTopLeft+1)
-					World.getTiles()[i][j] = 2;
-				//Mut haut droite
-				if(j == heightTopLeft+1)
-					World.getTiles()[i][j] = 2;
+	private void creerOuverture(int widthRight, int heightTop, int widthLeft, int heightBottom) {
+		for(i = widthLeft ; i < widthRight ; i++) {
+			for(j = heightBottom ; j < heightTop ; j++) {
 				
-				//Porte Milieu
-				if(i == xMiddle && j == heightTopLeft+1)
+				if(i != 0 & j <World.getHeight() & i<World.getWidth() & j!= 0) {
+				//Gauche
+				if(i == widthLeft+1 & j== yMiddle)
 					World.getTiles()[i][j] = 1;
-			}
-		}
-
-		//En bas � gauche
-		for (int i = xMiddle ; i > widthBottomLeft ; i--) {
-			for (int j = yMiddle ; j < heightBottomRight ; j++) {
-
-				//Mur gauche bas
-				if(i == widthBottomLeft+1)
-					World.getTiles()[i][j] = 2;
-				//Mur bas gauche
-				if(j == heightBottomRight-1)
-					World.getTiles()[i][j] = 2;
 				
-				//PorteMilieu
-				if(i== widthBottomLeft+1 && j == yMiddle)
+				//Droite
+				if(i == widthRight-1 && j == yMiddle)
 					World.getTiles()[i][j] = 1;
-			}
-		}
-
-		//En bas � droite
-		for (int i = xMiddle ; i < widthBottomRight ; i++) {
-			for (int j = yMiddle ; j < heightBottomRight ; j++) {
-
-
-				//Mur droite bas
-				if(i ==widthBottomRight-1 ) 
-					World.getTiles()[i][j] = 2;
-
-				//Mur bas droite
-				if(j == heightBottomRight-1)
-					World.getTiles()[i][j] = 2;
 				
-				//Porte Milieu
-				if(i == xMiddle && j == heightBottomRight-1) {
+				//Bas
+				if(i == xMiddle & j == heightTop-1)
 					World.getTiles()[i][j] = 1;
+				
+				//haut
+				if(i == xMiddle & j == heightBottom+1)
+					World.getTiles()[i][j] = 1;
+			}else {
+				if( i == xMiddle & j==0 ) {
+					World.getTiles()[i][j] = 2;
 				}
-				
-				if( i == widthBottomRight-1 && j == yMiddle) {
-					World.getTiles()[i][j] = 1;
+				if(i == 0 & j==xMiddle) {
+					World.getTiles()[i][j] = 2;
 				}
-					
+				if(j == heightTop & i != 0) {
+					World.getTiles()[i][j] = 2;
+				}
+				if(i == widthRight & j!= 0) {
+					World.getTiles()[i][j] = 2;
+				}
+			}
 			}
 		}
-
-		*/
 	}
 
 }
