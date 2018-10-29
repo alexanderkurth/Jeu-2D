@@ -39,18 +39,17 @@ public class World {
 		// Temporary entity code!
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
-		spawn = new RoomSpawn(20,20,5,5);
+		spawn = new RoomSpawn(6,6,5,5);
 		//Room Manager
 		roomManager = new RoomManager(handler);
-		roomManager.addRoom(spawn);
+		//roomManager.addRoom(spawn);
 		//dungeonManager.addRoom(new Room(handler, 12,12,9,9));
 		//roomManager.addRoom(new Room( 12,12,9,9));
 		//roomManager.addRoom(new Room( 3,3,5,5));
 		//loadWorld(path);
 		createWorld();
-		Corridor c = new Corridor(5,10,3,5);
-		c.creerCouloirHorizontal();
-		
+		Corridor c = new Corridor(3,3,10,5);
+		c.corridorVertical();		
 		
 		entityManager.getPlayer().setX(3);
 		entityManager.getPlayer().setY(3);
