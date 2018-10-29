@@ -1,57 +1,44 @@
 package main.world.dungeon;
 
-import java.awt.Graphics;
-
-import main.Handler;
 import main.world.World;
 
-public class Corridor extends Dungeon{
+public class Corridor{
+	
+	private int x;
+	private int y;
+	private int width;
+	private int length;
 
-	public Corridor(int x, int y, int width, int height) {
-		super(x, y, width, height);
-	}
-
-	public void corridorHorizontal() {
-		 int heightCorridor = y + height;
-		 int widthCorridor = x + width;
-		 
-		 int xMiddle = (x + widthCorridor)/2;
-		 int yMiddle = (y + heightCorridor)/2;
-		 
-		 for(int i=xMiddle; i < widthCorridor ; i++) {
-			 for(int j=yMiddle-1; j < heightCorridor ; j++) {
-				 if(j == (heightCorridor-1)) 
-					 World.getTiles()[i][j] = 2;
-				 
-				 if(j == y && x != (widthCorridor-1)) 
-					 World.getTiles()[i][j] = 2;
-				 
-				 if( i == xMiddle && j ==yMiddle)
-					 World.getTiles()[i][j] = 1;
-			 }
-		 }
+	public Corridor(int x, int y, int width, int length) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.length = length;
 	}
 	
-	public void corridoVertical() {
-		 int heightCorridor = y + height;
-		 int widthCorridor = x + width;
-		 
-		 int xMiddle = (x + widthCorridor)/2;
-		 int yMiddle = (y + heightCorridor)/2;
-		 
-		 for(int i=xMiddle; i < widthCorridor ; i++) {
-			 for(int j=yMiddle-1; j < heightCorridor ; j++) {
-				 if(j == (heightCorridor-1)) 
-					 World.getTiles()[j][i] = 2;
-				 
-				 if(j == y && x != (widthCorridor-1)) 
-					 World.getTiles()[j][i] = 2;
-				 
-				 if( i == xMiddle && j ==yMiddle)
-					 World.getTiles()[j][i] = 1;
-			 }
-		 }
-	}
-
+	public void creerCouloirHorizontal() {
 		
+		int corridorLength = x + length;
+		int corridorWidth = y + width;
+		
+		int yStart = x;
+		int xStart = y;
+
+		for(int i = xStart; i < corridorLength ; i++) {
+			for( int j = yStart; j < corridorWidth ; j++) {
+				
+				if(j == corridorWidth-1)
+					World.getTiles()[i][j] = 2;		
+				else {
+					World.getTiles()[i][j] = 1;
+				}
+				if(j == y)
+					World.getTiles()[i][j] = 2;
+			}
+		}
+		
+		
+	}
+	
+	
 }

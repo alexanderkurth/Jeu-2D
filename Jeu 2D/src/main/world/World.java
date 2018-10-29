@@ -1,15 +1,13 @@
 package main.world;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 
 import main.Handler;
 import main.entities.EntityManager;
 import main.entities.creatures.Player;
 import main.tile.Tile;
+import main.world.dungeon.Corridor;
 import main.world.dungeon.RoomManager;
-import main.world.dungeon.rooms.Room;
 import main.world.dungeon.rooms.RoomSpawn;
 
 public class World {
@@ -37,11 +35,11 @@ public class World {
 		this.handler = handler;
 		//Entity Manager
 		entityManager = new EntityManager(handler, new Player(handler, spawnX, spawnY));
+		
 		// Temporary entity code!
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
-		spawn = new RoomSpawn(4,4,3,3);
-		
+		spawn = new RoomSpawn(20,20,5,5);
 		//Room Manager
 		roomManager = new RoomManager(handler);
 		roomManager.addRoom(spawn);
@@ -50,6 +48,9 @@ public class World {
 		//roomManager.addRoom(new Room( 3,3,5,5));
 		//loadWorld(path);
 		createWorld();
+		Corridor c = new Corridor(5,10,3,5);
+		c.creerCouloirHorizontal();
+		
 		
 		entityManager.getPlayer().setX(3);
 		entityManager.getPlayer().setY(3);
