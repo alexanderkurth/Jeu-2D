@@ -8,6 +8,7 @@ import main.entities.creatures.Player;
 import main.tile.Tile;
 import main.world.dungeon.Corridor;
 import main.world.dungeon.RoomManager;
+import main.world.dungeon.rooms.Room;
 import main.world.dungeon.rooms.RoomSpawn;
 
 public class World {
@@ -42,14 +43,14 @@ public class World {
 		spawn = new RoomSpawn(6,6,5,5);
 		//Room Manager
 		roomManager = new RoomManager(handler);
-		//roomManager.addRoom(spawn);
+		roomManager.addRoom(spawn);
 		//dungeonManager.addRoom(new Room(handler, 12,12,9,9));
-		//roomManager.addRoom(new Room( 12,12,9,9));
-		//roomManager.addRoom(new Room( 3,3,5,5));
+		roomManager.addRoom(new Room( 32,48,9,9));
+		roomManager.addRoom(new Room( 19,26,5,5));
 		//loadWorld(path);
 		createWorld();
-		Corridor c = new Corridor(3,3,10,5);
-		c.corridorVertical();		
+		Corridor c = new Corridor(3,3,3,5);
+		//c.corridorVertical();		
 		
 		entityManager.getPlayer().setX(3);
 		entityManager.getPlayer().setY(3);
