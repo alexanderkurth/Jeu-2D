@@ -132,4 +132,36 @@ public class Room {
 		}
 
 	}
+	
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getxMiddle() {
+		return xMiddle;
+	}
+
+	public void setxMiddle(int xMiddle) {
+		this.xMiddle = xMiddle;
+	}
+
+	public int getyMiddle() {
+		return yMiddle;
+	}
+
+	public void setyMiddle(int yMiddle) {
+		this.yMiddle = yMiddle;
+	}
 }

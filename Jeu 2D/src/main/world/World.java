@@ -13,6 +13,14 @@ import main.world.dungeon.rooms.RoomSpawn;
 
 public class World {
 	
+	private int random;
+	
+	//coordonnées spawn
+	int xSpawn = 6;
+	int ySpawn = 6;
+	int SpawnWidth = 5;
+	int SpawnHeight = 5;
+	
 	//scale
 	private int scale = 64;
 
@@ -40,20 +48,16 @@ public class World {
 		// Temporary entity code!
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 		
-		spawn = new RoomSpawn(6,6,5,5);
+		spawn = new RoomSpawn(xSpawn,ySpawn,SpawnWidth,SpawnHeight);
 		//Room Manager
 		roomManager = new RoomManager(handler);
 		roomManager.addRoom(spawn);
-		//dungeonManager.addRoom(new Room(handler, 12,12,9,9));
-		roomManager.addRoom(new Room( 32,48,9,9));
-		roomManager.addRoom(new Room( 19,26,5,5));
+		
 		//loadWorld(path);
 		createWorld();
-		Corridor c = new Corridor(3,3,3,5);
-		//c.corridorVertical();		
 		
-		entityManager.getPlayer().setX(3);
-		entityManager.getPlayer().setY(3);
+		entityManager.getPlayer().setX(100);
+		entityManager.getPlayer().setY(100);
 	}
 	
 	public void tick(){
@@ -108,15 +112,50 @@ public class World {
 		height = 100;
 		setTiles(new int[height][width]);
 		
-		createRooms();
 		
-
-
+		createRooms();
 	}
 	
 	public void createRooms() {
-		roomManager.create(roomManager.getRooms());
+		int x = spawn.getxMiddle();
+		int y = spawn.getHeight();
+		random = 0 + (int)(Math.random() * ((2 - 0) + 1));
 		
+		Room room2;
+		Room room3;
+		
+		if( random%2 == 0) {
+			roomManager.addRoom(room2 = new Room(xSpawn,6*ySpawn,SpawnWidth,SpawnHeight));
+			
+			Corridor c = new Corridor(x-1,2*y,3,5);
+			roomManager.addCorridor(c);
+			
+			random = 0 + (int)(Math.random() * ((2 - 0) + 1));
+			
+			if(random%2 == 0) {
+				roomManager.addRoom(room3 = new Room(6*xSpawn,6*ySpawn,SpawnWidth,SpawnHeight));
+				
+				Corridor c2 = new Corridor(2*x,(4*y)-1,5,3);
+				roomManager.addCorridor(c2);
+				
+			}else {
+				roomManager.addRoom(room2 = new Room(xSpawn,11*ySpawn,SpawnWidth,SpawnHeight));
+				
+				Corridor c2 = new Corridor(x-1,5*y,3,5);
+				roomManager.addCorridor(c2);
+			}
+			
+		}else {/*
+			roomManager.addRoom(room2 = new Room(6*xSpawn,ySpawn,SpawnWidth,SpawnHeight));
+			
+			Corridor c = new Corridor(2*x,y-1,5,3);
+			roomManager.addCorridor(c);
+			*/ 
+			
+		}
+		
+		roomManager.createRoom(roomManager.getRooms());
+		roomManager.createCorridor(roomManager.getCorridors());
 	}
 
 	//Getters & Setters

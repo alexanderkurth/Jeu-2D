@@ -16,6 +16,14 @@ public class Corridor{
 		this.height = length;
 	}
 	
+	public void create() {
+		if(width > height) {
+			corridorHorizontal();
+		}else {
+			corridorVertical();
+		}
+	}
+	
 	public void corridorHorizontal() {
 		 int heightCorridor = y + height;
 		 int widthCorridor = x + width;
