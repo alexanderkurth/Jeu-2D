@@ -133,6 +133,7 @@ public class World {
 			random = 0 + (int)(Math.random() * ((2 - 0) + 1));
 			
 			if(random%2 == 0) {
+				
 				roomManager.addRoom(room3 = new Room(6*xSpawn,6*ySpawn,SpawnWidth,SpawnHeight));
 				
 				Corridor c2 = new Corridor(2*x,(4*y)-1,5,3);
