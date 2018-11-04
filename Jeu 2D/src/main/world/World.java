@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import main.Handler;
 import main.entities.EntityManager;
 import main.entities.creatures.Player;
+import main.entities.statics.Tree;
 import main.tile.Tile;
 import main.world.dungeon.Corridor;
 import main.world.dungeon.RoomManager;
@@ -133,7 +134,6 @@ public class World {
 			random = 0 + (int)(Math.random() * ((2 - 0) + 1));
 			
 			if(random%2 == 0) {
-				
 				roomManager.addRoom(room3 = new Room(6*xSpawn,6*ySpawn,SpawnWidth,SpawnHeight));
 				
 				Corridor c2 = new Corridor(2*x,(4*y)-1,5,3);
@@ -146,12 +146,25 @@ public class World {
 				roomManager.addCorridor(c2);
 			}
 			
-		}else {/*
+		}else {
 			roomManager.addRoom(room2 = new Room(6*xSpawn,ySpawn,SpawnWidth,SpawnHeight));
 			
 			Corridor c = new Corridor(2*x,y-1,5,3);
 			roomManager.addCorridor(c);
-			*/ 
+			
+			random = 0 + (int)(Math.random() * ((2 - 0) + 1));
+			
+			if(random%2 == 0) {
+				roomManager.addRoom(room3 = new Room(11*xSpawn,ySpawn,SpawnWidth,SpawnHeight));
+				
+				Corridor c2 = new Corridor(5*x,y-1,5,3);
+				roomManager.addCorridor(c2);
+			}else {
+				roomManager.addRoom(room3 = new Room(6*xSpawn,6*ySpawn,SpawnWidth,SpawnHeight));
+				
+				Corridor c2 = new Corridor(4*x-1,2*y,3,5);
+				roomManager.addCorridor(c2);
+			}
 			
 		}
 		
