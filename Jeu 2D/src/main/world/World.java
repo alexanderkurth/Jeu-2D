@@ -16,7 +16,9 @@ public class World {
 	
 	private int random;
 	
-	//coordonnées spawn
+	private int nombre = 4;
+	
+	//coordonnï¿½es spawn
 	int xSpawn = 6;
 	int ySpawn = 6;
 	int SpawnWidth = 5;
@@ -114,17 +116,46 @@ public class World {
 		setTiles(new int[height][width]);
 		
 		
-		createRooms();
+		createRooms(xSpawn, ySpawn);
 	}
 	
-	public void createRooms() {
-		int x = spawn.getxMiddle();
-		int y = spawn.getHeight();
-		random = 0 + (int)(Math.random() * ((2 - 0) + 1));
+	/*
+	 * int x = spawn.getxMiddle();
+		int y = spawn.getyMiddle();
+	 */
+	public int random(int min, int max) {
+		return min + (int)(Math.random() * ((max - min) + 1)); 
+	}
+	
+	public void createRooms(int xRoom, int yRoom) {
+
+		while (nombre != 0) {
+			
+			int random = random(1,2);
+			System.out.println(random);
+			
+			
+			//bas
+			if(random%2 == 0) {
+				
+				yRoom = 30+yRoom;			
+				roomManager.addRoom(new Room(xSpawn,yRoom,SpawnWidth,SpawnHeight));
+				
+				nombre--;
+				
+			//droite
+			}else {
+				
+				xRoom = 30+xRoom;			
+				roomManager.addRoom(new Room(xRoom,ySpawn,SpawnWidth,SpawnHeight));
+				
+				nombre--;
+				
+			}
+		}
 		
-		Room room2;
-		Room room3;
 		
+		/*
 		if( random%2 == 0) {
 			roomManager.addRoom(room2 = new Room(xSpawn,6*ySpawn,SpawnWidth,SpawnHeight));
 			
@@ -138,6 +169,8 @@ public class World {
 				
 				Corridor c2 = new Corridor(2*x,(4*y)-1,5,3);
 				roomManager.addCorridor(c2);
+				
+				random = 0 + (int)(Math.random() * ((2 - 0) + 1));
 				
 			}else {
 				roomManager.addRoom(room2 = new Room(xSpawn,11*ySpawn,SpawnWidth,SpawnHeight));
@@ -167,7 +200,7 @@ public class World {
 			}
 			
 		}
-		
+		*/
 		roomManager.createRoom(roomManager.getRooms());
 		roomManager.createCorridor(roomManager.getCorridors());
 	}
