@@ -12,12 +12,7 @@ import main.world.dungeon.RoomManager;
 import main.world.dungeon.rooms.Room;
 import main.world.dungeon.rooms.RoomSpawn;
 
-public class World {
-	
-	private int random;
-	
-	private int nombre = 4;
-	
+public class World {		
 	//coordonn�es spawn
 	int xSpawn = 6;
 	int ySpawn = 6;
@@ -116,19 +111,63 @@ public class World {
 		setTiles(new int[height][width]);
 		
 		
-		createRooms(xSpawn, ySpawn);
+		createRooms();
 	}
 	
 	/*
 	 * int x = spawn.getxMiddle();
 		int y = spawn.getyMiddle();
 	 */
-	public int random(int min, int max) {
-		return min + (int)(Math.random() * ((max - min) + 1)); 
-	}
-	
-	public void createRooms(int xRoom, int yRoom) {
 
+	
+	public void createRooms() {
+		
+		int x = spawn.getxMiddle();
+		int y = spawn.getyMiddle();
+		int ecart = 30;
+		
+		int test = 4;
+		
+		while(test != 0) {
+			
+			int random = random(1,2);
+			
+			System.out.println( "in" + random);
+			if(random%2 == 0) {
+				x += 30;
+			}else {
+				y += 30;
+			}
+			
+			createRoomAtCoordoninate(x, y);
+			
+			test--;
+		}
+		
+		/*
+		nombre = 5;
+		
+		int xRoom = spawn.getxMiddle();
+		int yRoom = spawn.getyMiddle();		
+			
+			if(random%2 == 0) {
+				xRoom += 30;
+				
+				createRoom(xRoom,yRoom);
+			}else {
+				yRoom += 30;
+				
+				createRoom(xRoom,yRoom);
+				
+			}
+			int random = random(1,2);
+			System.out.println(random);
+			
+			nombre --;		
+		
+		}
+			
+		/*
 		while (nombre != 0) {
 			
 			int random = random(1,2);
@@ -153,6 +192,7 @@ public class World {
 				
 			}
 		}
+		*/
 		
 		
 		/*
@@ -203,6 +243,14 @@ public class World {
 		*/
 		roomManager.createRoom(roomManager.getRooms());
 		roomManager.createCorridor(roomManager.getCorridors());
+	}
+
+	public int random(int min, int max) {
+		return min + (int)(Math.random() * ((max - min) + 1)); 
+	}	
+	
+	public void createRoomAtCoordoninate(int xRoom, int yRoom) {
+		roomManager.addRoom(new Room(xRoom,yRoom,SpawnWidth,SpawnHeight));
 	}
 
 	//Getters & Setters
