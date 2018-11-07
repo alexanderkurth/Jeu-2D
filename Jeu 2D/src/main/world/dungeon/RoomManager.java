@@ -61,9 +61,4 @@ public class RoomManager {
 	public void setCorridors(ArrayList<Corridor> corridors) {
 		this.corridors = corridors;
 	}
-
-	public void setCorridor(Corridor corridor) {
-		this.corridor = corridor;
-	}
-
 }

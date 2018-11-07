@@ -28,9 +28,6 @@ public class Corridor{
 		 int heightCorridor = y + height;
 		 int widthCorridor = x + width;
 		 
-		 int xMiddle = (widthCorridor)/2;
-		 int yMiddle = (heightCorridor)/2;
-		 
 		 for(int i=x; i < widthCorridor ; i++) {
 			 for(int j=y; j < heightCorridor ; j++) {
 				 
@@ -51,9 +48,6 @@ public class Corridor{
 	public void corridorVertical() {
 		int heightCorridor = y + height;
 		 int widthCorridor = x + width;
-		 
-		 int xMiddle = (widthCorridor)/2;
-		 int yMiddle = (heightCorridor)/2;
 		 
 		 for(int i=x; i < widthCorridor ; i++) {
 			 for(int j=y; j < heightCorridor ; j++) {
