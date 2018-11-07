@@ -144,17 +144,9 @@ public class World {
 			
 			if(random%2 == 0) {
 				//droite
-				xSpawn += 30;
-				roomManager.addRoom(room3 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-				Corridor c3 = new Corridor(5*x,y-1,5,3);
-				
-				roomManager.addCorridor(c3);
 				
 			}else {
-				//bas
-				
-				
-				
+				//bas			
 			}
 			
 		}else {
