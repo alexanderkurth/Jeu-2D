@@ -123,6 +123,9 @@ public class World {
 	public void createRooms() {
 		int random = random(1,2);
 		
+		int verifDroite = 1;
+		int verifBas = 1;
+		
 		System.out.println(random);
 		
 		int x = 5;
@@ -134,27 +137,51 @@ public class World {
 		if( random%2 == 0) {
 			//droite
 			xSpawn += 30;
+			x += 5;
+			y -= 1;
+			verifDroite++;
+			
 			roomManager.addRoom(room2 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-			Corridor c2 = new Corridor(2*x,y-1,5,3);
+			Corridor c2 = new Corridor(x,y,5,3);
+			
+			System.out.println(x + " " + y + " " + verifDroite);
 			
 			roomManager.addCorridor(c2);
 			
-			random = random(1,2);
-			System.out.println(random);
+			random = random(2,2);
 			
 			if(random%2 == 0) {
 				//droite
+				xSpawn += 30;
+				roomManager.addRoom(room3 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
+				
+				System.out.println(x*verifDroite + " " + y);
+				
+				Corridor c3 = new Corridor(x*verifDroite+5,y*verifBas,5,3);
+				
+				roomManager.addCorridor(c3);
 				
 			}else {
-				//bas			
+				//bas		
+				ySpawn += 30;
+				roomManager.addRoom(room3 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
+				
+				System.out.print(y*verifBas + " " + y);
+				
+				Corridor c3 = new Corridor(x*verifDroite-1,y*verifBas+6,3,5);
+				
+				roomManager.addCorridor(c3);				
 			}
 			
 		}else {
 			//bas
 			ySpawn += 30;
+			y += 5;
+			x -=1;		
+			verifBas ++;
 			
 			roomManager.addRoom(room2 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-			Corridor c2 = new Corridor(x-1,2*y,3,5);
+			Corridor c2 = new Corridor(x,y*verifBas,3,5);
 			
 			roomManager.addCorridor(c2);
 			
@@ -162,8 +189,10 @@ public class World {
 			
 			if(random%2 == 0) {
 				//droite
+				
 			}else {
 				//bas
+				
 			}
 		}
 		
