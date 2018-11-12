@@ -126,7 +126,7 @@ public class World {
 		int verif2 = 1;
 		int verif3 = 1;
 		
-		int xMin = 1;
+		int xMin = 2;
 		int yMax =2;
 		
 		int random = random(xMin,yMax);
@@ -170,7 +170,7 @@ public class World {
 
 			roomManager.addCorridor(c2);
 
-			random = random(xMin,yMax);
+			random = 1;
 
 			if(random%2 == 0) {
 				//droite
@@ -244,6 +244,20 @@ public class World {
 
 			}else {
 				//bas
+				
+				//xSpawn += 30;
+				ySpawn += 30;
+				
+				
+				roomManager.addRoom(room3 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
+
+				System.out.println(x*verifDroite-1+" " + (y*verifBas+ecart*verif2+1));
+
+				c3 = new Corridor(x*verifDroite-1,y*verifBas+ecart*verif2+1,3,5);
+
+				roomManager.addCorridor(c3);
+
+				random = random(xMin,yMax);
 			}
 		}else {
 			//bas
@@ -301,12 +315,12 @@ public class World {
 						verif3++;
 
 						
-						roomManager.addRoom(room4 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-						c4 = new Corridor(x,y*verifBas+ecart*verif3,3,5);
+						roomManager.addRoom(room5 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
+						c5 = new Corridor(x,y*verifBas+ecart*verif3,3,5);
 
 						System.out.println(x + " " + (y*verifBas+ecart*verif3));
 
-						roomManager.addCorridor(c4);
+						roomManager.addCorridor(c5);
 
 						random = random(xMin,yMax);
 						
@@ -319,11 +333,11 @@ public class World {
 
 							
 							roomManager.addRoom(room4 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-							c4 = new Corridor(x,y*verifBas+ecart*verif3,3,5);
+							c5 = new Corridor(x,y*verifBas+ecart*verif3,3,5);
 
 							System.out.println(x + " " + (y*verifBas+ecart*verif3));
 
-							roomManager.addCorridor(c4);
+							roomManager.addCorridor(c5);
 
 							random = random(xMin,yMax);
 							
