@@ -126,7 +126,7 @@ public class World {
 		int verif2 = 1;
 		int verif3 = 1;
 		
-		int xMin = 2;
+		int xMin = 1;
 		int yMax =2;
 		
 		int random = random(xMin,yMax);
@@ -183,7 +183,7 @@ public class World {
 
 				roomManager.addCorridor(c3);
 
-				random = 2;
+				random = random(xMin,yMax);
 
 				if(random%2 == 0) {
 					verifDroite++;
@@ -198,7 +198,7 @@ public class World {
 
 					roomManager.addCorridor(c4);
 
-					random = 1;
+					random = random(xMin,yMax);
 
 					if(random%2 == 0) {
 						//droite
@@ -229,9 +229,25 @@ public class World {
 							System.out.println(x*verifDroite+ecart*verif2 + " " + y);
 
 							roomManager.addCorridor(c6);
+							
+							random = random(xMin,yMax);
 
 						}else {
 							//bas
+							
+							ySpawn += 30;
+							verifDroite++;
+							verifBas--;
+							
+							roomManager.addRoom(room4 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
+							
+							System.out.println(x*verifDroite-1 +" " + (y*verifBas+ecart*verif2+1));
+							
+							c5 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
+							
+							roomManager.addCorridor(c5);
+							
+							random = random(xMin,yMax);
 						}
 
 					}else {
@@ -245,9 +261,9 @@ public class World {
 						
 						System.out.println(x*verifDroite-1 +" " + (y*verifBas+ecart*verif2+1));
 						
-						c3 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
+						c4 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
 						
-						roomManager.addCorridor(c3);
+						roomManager.addCorridor(c4);
 						
 						random = random(xMin,yMax);
 					}
