@@ -126,7 +126,7 @@ public class World {
 		int verif2 = 1;
 		int verif3 = 1;
 		
-		int xMin = 1;
+		int xMin = 2;
 		int yMax =2;
 		
 		int random = random(xMin,yMax);
@@ -166,11 +166,11 @@ public class World {
 			roomManager.addRoom(room2 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
 			c2 = new Corridor(x,y,5,3);
 
-			System.out.println(x + " " + y + " " + verifDroite);
+			System.out.println(x + " " + y + " " );
 
 			roomManager.addCorridor(c2);
 
-			random = random(xMin,yMax);
+			random = 1;
 
 			if(random%2 == 0) {
 				//droite
@@ -243,11 +243,17 @@ public class World {
 							
 							System.out.println(x*verifDroite-1 +" " + (y*verifBas+ecart*verif2+1));
 							
-							c5 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
+							c6 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
 							
-							roomManager.addCorridor(c5);
+							roomManager.addCorridor(c6);
 							
 							random = random(xMin,yMax);
+							
+							if(random%2==0) {
+								//droite
+							}else {
+								//bas
+							}
 						}
 
 					}else {
@@ -261,11 +267,17 @@ public class World {
 						
 						System.out.println(x*verifDroite-1 +" " + (y*verifBas+ecart*verif2+1));
 						
-						c4 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
+						c5 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
 						
-						roomManager.addCorridor(c4);
+						roomManager.addCorridor(c5);
 						
 						random = random(xMin,yMax);
+						
+						if(random%2==0) {
+							//droite
+						}else {
+							//bas
+						}
 					}
 
 				}else {
@@ -277,11 +289,17 @@ public class World {
 					
 					System.out.println(x*verifDroite-1 +" " + (y*verifBas+ecart*verif2+1));
 					
-					c3 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
+					c4 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
 					
-					roomManager.addCorridor(c3);
+					roomManager.addCorridor(c4);
 					
 					random = random(xMin,yMax);
+					
+					if(random%2==0) {
+						//droite
+					}else {
+						//bas
+					}
 					
 				}
 
@@ -289,17 +307,73 @@ public class World {
 				//bas
 				ySpawn += 30;
 				
-				
 				roomManager.addRoom(room3 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
 
-				System.out.println(x*verifDroite-1+" " + (y*verifBas+ecart*verif2+1));
+				System.out.println(x*verifDroite-1+" " + (y*verifBas+ecart*verif2+1) + "test");
 
-				c2 = new Corridor(x*verifDroite-1,y*verifBas+ecart*verif2+1,3,5);
+				c3 = new Corridor(x*verifDroite-1,y*verifBas+ecart*verif2+1,3,5);
 
-				roomManager.addCorridor(c2);
+				roomManager.addCorridor(c3);
 
-				random = random(xMin,yMax);
+				random = 1;
+				
+				if(random%2==0) {
+					//droite
+					verifDroite--;
+					verif2+=2;
+					verifBas += 4;
+
+					xSpawn += 30;
+					roomManager.addRoom(room5 =new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
+
+					c4 = new Corridor(x*verifDroite+ecart*verif2,y*verifBas-1,5,3);
+
+					System.out.println(x*verifDroite+ecart*verif2 + " " + (y*verifBas-1) );
+
+					roomManager.addCorridor(c4);
+					
+					random = 2;					
+					
+				}else {
+					//bas
+					
+					ySpawn += 30;
+					//x -= 1;
+					ecart = 5;
+					verifBas = 6;
+					
+					roomManager.addRoom(room2 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
+					c2 = new Corridor(x*verifDroite-1,y*verifBas+1,3,5);
+
+					System.out.println(x*verifDroite-1 + " " + (y*verifBas+1)+"test");
+
+					roomManager.addCorridor(c2);
+
+					random = 2;		
+					
+					if(random%2 == 0) {
+						//droite
+						verifDroite=2;
+						verifBas = 6;
+						verif2 = 2;
+
+						xSpawn += 30;
+						roomManager.addRoom(room5 =new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
+
+						c3 = new Corridor(x*verifDroite+ecart,y*verifBas+ecart*verif2,5,3);
+
+						System.out.println(x*verifDroite + " " + (y*verifBas+ecart*verif2)+ "\"test\"");
+						System.out.println(verifDroite);
+
+						roomManager.addCorridor(c3);
+						
+						random = random(xMin,yMax);	
+					}else {
+						//bas
+					}
+				}
 			}
+			
 		}else {
 			//bas
 			ySpawn += 30;
