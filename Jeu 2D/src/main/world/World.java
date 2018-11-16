@@ -123,7 +123,7 @@ public class World {
 	}
 
 	public void createRooms() {			
-		int ecart = 5;
+		int ecart = 6;
 		
 
 		
@@ -135,14 +135,14 @@ public class World {
 		int xCorridor = 6;
 		int yCorridor = 6;
 		
-		for(int i = 0 ; i < 3 ; i++) {
+		for(int i = 0 ; i < 5 ; i++) {
 			random = random(1,2);
 			
 			if(random%2 == 0) {
 				//droite
 				roomManager.addRoom(room = new Room(x,y,5,5));
 				
-				roomManager.addCorridor(new Corridor(xCorridor+ecart,room.getyMiddle(),4,3));
+				roomManager.addCorridor(new Corridor(room.getxMiddle() + ecart,room.getyMiddle(),4,3));
 				
 				System.out.println((xCorridor+ecart) + " : " + y);
 				
@@ -151,7 +151,7 @@ public class World {
 				//bas
 				roomManager.addRoom(room = new Room(x,y,5,5));
 				
-				roomManager.addCorridor(new Corridor(room.getxMiddle(),yCorridor+ecart,3,4));
+				roomManager.addCorridor(new Corridor(room.getxMiddle(),room.getyMiddle() + ecart,3,4));
 				
 				System.out.println(x + " : " +(yCorridor+ecart));
 				
