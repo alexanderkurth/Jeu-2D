@@ -124,8 +124,8 @@ public class World {
 
 	public void createRooms() {			
 		int ecart = 6;
-		
-
+		int compteur  =  0; 
+		int nombrePiece = 5;
 		
 		Room room;
 
@@ -135,35 +135,45 @@ public class World {
 		int xCorridor = 6;
 		int yCorridor = 6;
 		
-		for(int i = 0 ; i < 5 ; i++) {
+		for(int i = 0 ; i < nombrePiece ; i++) {
 			random = random(1,2);
 			
 			if(random%2 == 0) {
 				//droite
 				roomManager.addRoom(room = new Room(x,y,5,5));
 				
-				roomManager.addCorridor(new Corridor(room.getxMiddle() + ecart,room.getyMiddle(),4,3));
+				if(compteur != nombrePiece-1) {
+					roomManager.addCorridor(new Corridor(room.getxMiddle() + ecart,room.getyMiddle(),4,3));					
+				}
 				
-				System.out.println((xCorridor+ecart) + " : " + y);
+				
+				System.out.println(room.getxMiddle() + ecart + " : " + room.getyMiddle());
 				
 				setX(x+30);						
+				compteur++;
 			}else {
 				//bas
 				roomManager.addRoom(room = new Room(x,y,5,5));
 				
-				roomManager.addCorridor(new Corridor(room.getxMiddle(),room.getyMiddle() + ecart,3,4));
+				if(compteur != nombrePiece-1) {
+					roomManager.addCorridor(new Corridor(room.getxMiddle(),room.getyMiddle() + ecart,3,4));
+				}
 				
-				System.out.println(x + " : " +(yCorridor+ecart));
+				
+				System.out.println(room.getxMiddle() + ecart + " : " + room.getyMiddle());
 				
 				setY(y+30);
+				compteur++;
 			}
 		}
 		
 
-
+		
 		
 		roomManager.createCorridor(roomManager.getCorridors());
 		roomManager.createRoom(roomManager.getRooms());
+		
+		//tiles[10][5] = 1;
 	}
 
 	private int random(int min, int max) {
