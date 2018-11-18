@@ -165,6 +165,8 @@ public class World {
 				setY(y+30);
 				compteur++;
 			}
+			
+			tiles[1][1] = 1;
 		}
 		
 
