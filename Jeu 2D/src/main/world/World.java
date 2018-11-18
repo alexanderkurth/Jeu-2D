@@ -20,11 +20,6 @@ public class World {
 	
 	private int x;
 	private int y;
-	
-	private ArrayList<Integer> coordX = new ArrayList<Integer>();
-	private ArrayList<Integer> coordY =  new ArrayList<Integer>();
-	
-
 
 	//coordonn�es spawn
 	int xSpawn = 6;
@@ -49,8 +44,6 @@ public class World {
 
 	private RoomManager roomManager;
 
-	private RoomSpawn spawn;
-
 	public World(Handler handler, String path){
 		this.handler = handler;
 		//Entity Manager
@@ -59,11 +52,8 @@ public class World {
 		// Temporary entity code!
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 
-		//spawn = new RoomSpawn(xSpawn,ySpawn,SpawnWidth,SpawnHeight);
 		roomManager = new RoomManager(handler);
-		//roomManager.addRoom(spawn);
 
-		//loadWorld(path);
 		createWorld();
 
 		entityManager.getPlayer().setX(100);
@@ -153,9 +143,6 @@ public class World {
 				
 				System.out.println(room.getxMiddle() + ecart + " : " + room.getyMiddle());
 				
-				coordX.add( room.getxMiddle() + ecart);
-				coordY.add(room.getyMiddle());
-				
 				setX(x+30);						
 				compteur++;			
 			}else {
@@ -166,11 +153,7 @@ public class World {
 					roomManager.addCorridor(new Corridor(room.getxMiddle(),room.getyMiddle() + ecart -1,3,6));
 				}
 				
-				
 				System.out.println(room.getxMiddle() + ecart + " : " + room.getyMiddle());
-				
-				coordX.add(room.getxMiddle() + ecart);
-				coordY.add(room.getyMiddle());
 				
 				setY(y+30);
 				compteur++;
