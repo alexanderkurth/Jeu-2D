@@ -1,6 +1,7 @@
 package main.world;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import main.Handler;
 import main.entities.EntityManager;
@@ -19,6 +20,9 @@ public class World {
 	
 	private int x;
 	private int y;
+	
+	private ArrayList<Integer> coordX = new ArrayList<Integer>();
+	private ArrayList<Integer> coordY =  new ArrayList<Integer>();
 	
 
 
@@ -143,39 +147,42 @@ public class World {
 				roomManager.addRoom(room = new Room(x,y,5,5));
 				
 				if(compteur != nombrePiece-1) {
-					roomManager.addCorridor(new Corridor(room.getxMiddle() + ecart,room.getyMiddle(),4,3));					
+					roomManager.addCorridor(new Corridor(room.getxMiddle() + ecart -1,room.getyMiddle(),6,3));					
 				}
 				
 				
 				System.out.println(room.getxMiddle() + ecart + " : " + room.getyMiddle());
 				
+				coordX.add( room.getxMiddle() + ecart);
+				coordY.add(room.getyMiddle());
+				
 				setX(x+30);						
-				compteur++;
+				compteur++;			
 			}else {
 				//bas
 				roomManager.addRoom(room = new Room(x,y,5,5));
 				
 				if(compteur != nombrePiece-1) {
-					roomManager.addCorridor(new Corridor(room.getxMiddle(),room.getyMiddle() + ecart,3,4));
+					roomManager.addCorridor(new Corridor(room.getxMiddle(),room.getyMiddle() + ecart -1,3,6));
 				}
 				
 				
 				System.out.println(room.getxMiddle() + ecart + " : " + room.getyMiddle());
 				
+				coordX.add(room.getxMiddle() + ecart);
+				coordY.add(room.getyMiddle());
+				
 				setY(y+30);
 				compteur++;
-			}
-			
-			tiles[1][1] = 1;
+			}			
 		}
 		
 
 		
 		
-		roomManager.createCorridor(roomManager.getCorridors());
-		roomManager.createRoom(roomManager.getRooms());
 		
-		//tiles[10][5] = 1;
+		roomManager.createRoom(roomManager.getRooms());		
+		roomManager.createCorridor(roomManager.getCorridors());
 	}
 
 	private int random(int min, int max) {
