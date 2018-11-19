@@ -1,18 +1,26 @@
 package main.world;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import main.Handler;
 import main.entities.EntityManager;
 import main.entities.creatures.Player;
 import main.entities.statics.Tree;
 import main.tile.Tile;
+import main.utils.Utils;
 import main.world.dungeon.Corridor;
 import main.world.dungeon.RoomManager;
 import main.world.dungeon.rooms.Room;
 import main.world.dungeon.rooms.RoomSpawn;
 
 public class World {		
+	
+	private int random;
+	
+	private int x;
+	private int y;
+
 	//coordonn�es spawn
 	int xSpawn = 6;
 	int ySpawn = 6;
@@ -36,8 +44,6 @@ public class World {
 
 	private RoomManager roomManager;
 
-	private RoomSpawn spawn;
-
 	public World(Handler handler, String path){
 		this.handler = handler;
 		//Entity Manager
@@ -46,12 +52,8 @@ public class World {
 		// Temporary entity code!
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 
-		spawn = new RoomSpawn(xSpawn,ySpawn,SpawnWidth,SpawnHeight);
-		//Room Manager
 		roomManager = new RoomManager(handler);
-		roomManager.addRoom(spawn);
 
-		//loadWorld(path);
 		createWorld();
 
 		entityManager.getPlayer().setX(100);
@@ -104,7 +106,7 @@ public class World {
 			}
 		}
 	}
-	 */	
+	*/
 	public void createWorld() {
 		width = 100;
 		height = 100;
@@ -114,472 +116,61 @@ public class World {
 		createRooms();
 	}
 
-	/*
-	 * int x = spawn.getxMiddle();
-		int y = spawn.getyMiddle();
-	 */
-
-
-	public void createRooms() {
-		int ecart = 5;
+	public void createRooms() {			
+		int ecart = 6;
+		int compteur  =  0; 
+		int nombrePiece = 5;
 		
-		int verif2 = 1;
-		int verif3 = 1;
+		Room room;
+
+		setX(6);
+		setY(6);
 		
-		int xMin = 2;
-		int yMax =2;
+		int xCorridor = 6;
+		int yCorridor = 6;
 		
-		int random = random(xMin,yMax);
-
-		int verifDroite = 1;
-		int verifBas = 1;
-
-		System.out.println(random);
-
-		int x = 5;
-		int y = 5;
-		
-		Corridor c1;
-		Corridor c2;
-		Corridor c3;
-		Corridor c4;
-		Corridor c5;
-		Corridor c6;
-
-		Room room2;
-		Room room3;
-		Room room4;
-		Room room5;
-		Room room6;
-		Room room7;
-		Room room8;
-		Room room9;
-		Room room10;
-
-		if( random%2 == 0) {
-			//droite
-			xSpawn += 30;
-			x += 5;
-			y -= 1;
-			verifDroite++;
-
-			roomManager.addRoom(room2 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-			c2 = new Corridor(x,y,5,3);
-
-			System.out.println(x + " " + y + " " );
-
-			roomManager.addCorridor(c2);
-
-			random = 1;
-
+		for(int i = 0 ; i < nombrePiece ; i++) {
+			random = random(1,2);
+			
 			if(random%2 == 0) {
 				//droite
-				xSpawn += 30;
-				roomManager.addRoom(room3 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-
-				System.out.println(x*verifDroite + " " + y);
-
-				c3 = new Corridor(x*verifDroite+ecart*verif2,y*verifBas,5,3);
-
-				roomManager.addCorridor(c3);
-
-				random = random(xMin,yMax);
-
-				if(random%2 == 0) {
-					verifDroite++;
-					verif2++;
-					//droite
-					xSpawn += 30;
-					roomManager.addRoom(room4 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-
-					c4 = new Corridor(x*verifDroite+ecart*verif2,y*verifBas,5,3);
-
-					System.out.println(x*verifDroite+10 + " " + y);
-
-					roomManager.addCorridor(c4);
-
-					random = random(xMin,yMax);
-
-					if(random%2 == 0) {
-						//droite
-						verifDroite++;
-						verif2++;
-
-						xSpawn += 30;
-						roomManager.addRoom(room5 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-
-						c5 = new Corridor(x*verifDroite+ecart*verif2,y*verifBas, 5, 3);
-
-						System.out.println(x*verifDroite+10 + " " + y);
-
-						roomManager.addCorridor(c5);
-
-						random = random(xMin,yMax);	
-						
-						if(random%2 == 0) {
-							//droite
-							verifDroite++;
-							verif2++;
-
-							xSpawn += 30;
-							roomManager.addRoom(room5 =new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-
-							c6 = new Corridor(x*verifDroite+ecart*verif2,y*verifBas,5,3);
-
-							System.out.println(x*verifDroite+ecart*verif2 + " " + y);
-
-							roomManager.addCorridor(c6);
-							
-							random = random(xMin,yMax);
-
-						}else {
-							//bas
-							
-							ySpawn += 30;
-							verifDroite++;
-							verifBas--;
-							
-							roomManager.addRoom(room4 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-							
-							System.out.println(x*verifDroite-1 +" " + (y*verifBas+ecart*verif2+1));
-							
-							c6 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
-							
-							roomManager.addCorridor(c6);
-							
-							random = random(xMin,yMax);
-							
-							if(random%2==0) {
-								//droite
-							}else {
-								//bas
-							}
-						}
-
-					}else {
-						//bas
-						
-						ySpawn += 30;
-						verifDroite++;
-						verifBas--;
-						
-						roomManager.addRoom(room4 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-						
-						System.out.println(x*verifDroite-1 +" " + (y*verifBas+ecart*verif2+1));
-						
-						c5 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
-						
-						roomManager.addCorridor(c5);
-						
-						random = random(xMin,yMax);
-						
-						if(random%2==0) {
-							//droite
-						}else {
-							//bas
-						}
-					}
-
-				}else {
-					// bas
-					ySpawn += 30;
-					verifDroite++;
-					
-					roomManager.addRoom(room4 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-					
-					System.out.println(x*verifDroite-1 +" " + (y*verifBas+ecart*verif2+1));
-					
-					c4 = new Corridor(x*verifDroite-1+ecart*verif2,y*verifBas+ecart*verif2+1,3,5);
-					
-					roomManager.addCorridor(c4);
-					
-					random = random(xMin,yMax);
-					
-					if(random%2==0) {
-						//droite
-					}else {
-						//bas
-					}
-					
+				roomManager.addRoom(room = new Room(x,y,5,5));
+				
+				if(compteur != nombrePiece-1) {
+					roomManager.addCorridor(new Corridor(room.getxMiddle() + ecart -1,room.getyMiddle(),6,3));					
 				}
-
+				
+				
+				System.out.println(room.getxMiddle() + ecart + " : " + room.getyMiddle());
+				
+				setX(x+30);						
+				compteur++;			
 			}else {
 				//bas
-				ySpawn += 30;
+				roomManager.addRoom(room = new Room(x,y,5,5));
 				
-				roomManager.addRoom(room3 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-
-				System.out.println(x*verifDroite-1+" " + (y*verifBas+ecart*verif2+1) + "test");
-
-				c3 = new Corridor(x*verifDroite-1,y*verifBas+ecart*verif2+1,3,5);
-
-				roomManager.addCorridor(c3);
-
-				random = 1;
-				
-				if(random%2==0) {
-					//droite
-					verifDroite--;
-					verif2+=2;
-					verifBas += 4;
-
-					xSpawn += 30;
-					roomManager.addRoom(room5 =new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-
-					c4 = new Corridor(x*verifDroite+ecart*verif2,y*verifBas-1,5,3);
-
-					System.out.println(x*verifDroite+ecart*verif2 + " " + (y*verifBas-1) );
-
-					roomManager.addCorridor(c4);
-					
-					random = 2;					
-					
-				}else {
-					//bas
-					
-					ySpawn += 30;
-					//x -= 1;
-					ecart = 5;
-					verifBas = 6;
-					
-					roomManager.addRoom(room2 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-					c2 = new Corridor(x*verifDroite-1,y*verifBas+1,3,5);
-
-					System.out.println(x*verifDroite-1 + " " + (y*verifBas+1)+"test");
-
-					roomManager.addCorridor(c2);
-
-					random = 2;		
-					
-					if(random%2 == 0) {
-						//droite
-						verifDroite=2;
-						verifBas = 6;
-						verif2 = 2;
-
-						xSpawn += 30;
-						roomManager.addRoom(room5 =new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-
-						c3 = new Corridor(x*verifDroite+ecart,y*verifBas+ecart*verif2,5,3);
-
-						System.out.println(x*verifDroite + " " + (y*verifBas+ecart*verif2)+ "\"test\"");
-						System.out.println(verifDroite);
-
-						roomManager.addCorridor(c3);
-						
-						random = random(xMin,yMax);	
-					}else {
-						//bas
-					}
+				if(compteur != nombrePiece-1) {
+					roomManager.addCorridor(new Corridor(room.getxMiddle(),room.getyMiddle() + ecart -1,3,6));
 				}
-			}
-			
-		}else {
-			//bas
-			ySpawn += 30;
-			x -= 1;
-			ecart = 5;
-			y += 5;
-			verifBas ++;
-			
-			roomManager.addRoom(room2 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-			c2 = new Corridor(x,y,3,5);
-
-			System.out.println(x + " " + y);
-
-			roomManager.addCorridor(c2);
-
-			random = random(xMin,yMax);
-			
-			if(random%1 == 0) {
-				//bas
 				
-				ySpawn += 30;
+				System.out.println(room.getxMiddle() + ecart + " : " + room.getyMiddle());
 				
-				roomManager.addRoom(room3 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-				c3 = new Corridor(x,y*verifBas+ecart*verif3,3,5);
-
-				System.out.println(x + " " + (y*verifBas+ecart*verif3));
-
-				roomManager.addCorridor(c3);
-
-				random = random(xMin,yMax);
-				
-				if(random%1 == 0) {
-					//bas
-					
-					ySpawn += 30;
-					verifBas ++;
-					verif3++;
-
-					
-					roomManager.addRoom(room4 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-					c4 = new Corridor(x,y*verifBas+ecart*verif3,3,5);
-
-					System.out.println(x + " " + (y*verifBas+ecart*verif3));
-
-					roomManager.addCorridor(c4);
-
-					random = random(xMin,yMax);
-					
-					if(random%1 == 0) {
-						//bas
-						
-						ySpawn += 30;
-						verifBas ++;
-						verif3++;
-
-						
-						roomManager.addRoom(room5 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-						c5 = new Corridor(x,y*verifBas+ecart*verif3,3,5);
-
-						System.out.println(x + " " + (y*verifBas+ecart*verif3));
-
-						roomManager.addCorridor(c5);
-
-						random = random(xMin,yMax);
-						
-						if(random%1 == 0) {
-							//bas
-							
-							ySpawn += 30;
-							verifBas ++;
-							verif3++;
-
-							
-							roomManager.addRoom(room4 = new Room(xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-							c5 = new Corridor(x,y*verifBas+ecart*verif3,3,5);
-
-							System.out.println(x + " " + (y*verifBas+ecart*verif3));
-
-							roomManager.addCorridor(c5);
-
-							random = random(xMin,yMax);
-							
-						}else {
-							//droite
-						}
-						
-					}else {
-						//droite
-					}
-					
-				}else {
-					//droite
-				}
-
-			}else {
-				//droite
-			}
+				setY(y+30);
+				compteur++;
+			}			
 		}
+		
 
-		/*
-		int verifDroite = 0;
-		int verifBas = 0;
-
-		int test = 4;
-
-		while(test != 0) {
-
-			int random = random(1,2);
-			if(random%2 == 0) {
-
-				x+=30;	
-
-				roomManager.addRoom(new Room(x,y,5,5));
-				roomManager.addCorridor(new Corridor((x-(25*verifDroite)),(y-1),5,3));
-
-				System.out.println(x +" "+y);
-				System.out.println((x-(25*verifDroite))+" : "+ (y-1) + "droite");	
-
-
-				verifDroite +=1;			
-			}else {
-
-				y+=30;
-
-				roomManager.addRoom(new Room(x,y,5,5));	
-
-
-
-				verifBas += 1;
-			}
-
-
-			System.out.println(verifDroite +" : "+ verifBas);
-			//System.out.println(x +" : "+ y);
-			test --;
-		}		
-		 */
+		
+		
+		
+		roomManager.createRoom(roomManager.getRooms());		
 		roomManager.createCorridor(roomManager.getCorridors());
-		roomManager.createRoom(roomManager.getRooms());
-
-
-		/*
-		if( random%2 == 0) {
-			roomManager.addRoom(room2 = new Room(xSpawn,6*ySpawn,SpawnWidth,SpawnHeight));
-
-			Corridor c = new Corridor(x-1,2*y,3,5);
-			roomManager.addCorridor(c);
-
-			random = 0 + (int)(Math.random() * ((2 - 0) + 1));
-
-			if(random%2 == 0) {
-				roomManager.addRoom(room3 = new Room(6*xSpawn,6*ySpawn,SpawnWidth,SpawnHeight));
-
-				Corridor c2 = new Corridor(2*x,(4*y)-1,5,3);
-				roomManager.addCorridor(c2);
-
-				random = 0 + (int)(Math.random() * ((2 - 0) + 1));
-
-			}else {
-				roomManager.addRoom(room2 = new Room(xSpawn,11*ySpawn,SpawnWidth,SpawnHeight));
-
-				Corridor c2 = new Corridor(x-1,5*y,3,5);
-				roomManager.addCorridor(c2);
-			}
-
-		}else {
-			roomManager.addRoom(room2 = new Room(6*xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-
-			Corridor c = new Corridor(2*x,y-1,5,3);
-			roomManager.addCorridor(c);
-
-			random = 0 + (int)(Math.random() * ((2 - 0) + 1));
-
-			if(random%2 == 0) {
-				roomManager.addRoom(room3 = new Room(11*xSpawn,ySpawn,SpawnWidth,SpawnHeight));
-
-				Corridor c2 = new Corridor(5*x,y-1,5,3);
-				roomManager.addCorridor(c2);
-			}else {
-				roomManager.addRoom(room3 = new Room(6*xSpawn,6*ySpawn,SpawnWidth,SpawnHeight));
-
-				Corridor c2 = new Corridor(4*x-1,2*y,3,5);
-				roomManager.addCorridor(c2);
-			}
-		}
-		 */
-
 	}
 
-	public int random(int min, int max) {
+	private int random(int min, int max) {
 		return min + (int)(Math.random() * ((max - min) + 1)); 
 	}	
-
-	public void createRoomAtCoordoninate(int xRoom, int yRoom) {
-
-		roomManager.addRoom(new Room(xRoom,yRoom,SpawnWidth,SpawnHeight));
-
-	}
-
-	public void createCorridorVerticalAtCoordinate(int xCorridor, int yCorridor) {
-		roomManager.addCorridor(new Corridor(xCorridor, yCorridor,3, 5));
-	}
-
-	public void createCorridorHorizontalAtCoordinate(int xCorridor, int yCorridor) {
-		roomManager.addCorridor(new Corridor(xCorridor, yCorridor,5, 3));
-	}
 
 	//Getters & Setters
 
@@ -601,6 +192,22 @@ public class World {
 
 	public static void setTiles(int[][] tiles) {
 		World.tiles = tiles;
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 }
 

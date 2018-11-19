@@ -21,10 +21,10 @@ public class Player extends Creature {
 		bounds.height = 19;
 		
 		//Animatons
-		animDown = new Animation(500, Assets.player_down);
-		animUp = new Animation(500, Assets.player_up);
-		animLeft = new Animation(500, Assets.player_left);
-		animRight = new Animation(500, Assets.player_right);
+		animDown = new Animation(450, Assets.player_down);
+		animUp = new Animation(450, Assets.player_up);
+		animLeft = new Animation(450, Assets.player_left);
+		animRight = new Animation(450, Assets.player_right);
 	}
 
 	@Override

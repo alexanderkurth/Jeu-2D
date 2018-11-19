@@ -94,7 +94,7 @@ public class Room {
 				if (i > width) {
 					// Gauche
 					if (i == widthLeft + 1 & j == yMiddle) {
-						World.getTiles()[i][j] = 1;
+						World.getTiles()[i][j] = 2;
 					}
 				} else if (i == widthLeft + 1 & j == yMiddle) {
 					World.getTiles()[i][j] = 2;
@@ -103,7 +103,7 @@ public class Room {
 				if (i < World.getWidth() - width) {
 					// Droite
 					if (i == widthRight - 1 && j == yMiddle) {
-						World.getTiles()[i][j] = 1;
+						World.getTiles()[i][j] = 2;
 					}
 				}else if (i == widthRight - 1 && j == yMiddle) {
 					World.getTiles()[i][j] = 2;
@@ -112,7 +112,7 @@ public class Room {
 				if (j < World.getHeight() - height) {
 					// Bas
 					if (i == xMiddle & j == heightTop - 1) {
-						World.getTiles()[i][j] = 1;
+						World.getTiles()[i][j] = 2;
 					}
 				}else if (i == xMiddle & j == heightTop - 1) {
 					World.getTiles()[i][j] = 2;
@@ -121,7 +121,7 @@ public class Room {
 				if (j > height) {
 					// haut
 					if (i == xMiddle & j == heightBottom + 1) {
-						World.getTiles()[i][j] = 1;
+						World.getTiles()[i][j] = 2;
 					}
 				}else if (i == xMiddle & j == heightBottom + 1) {
 					World.getTiles()[i][j] = 2;
