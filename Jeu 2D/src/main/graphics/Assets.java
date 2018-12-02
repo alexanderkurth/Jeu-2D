@@ -12,6 +12,7 @@ public class Assets {
 
 	public static void init(){
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
+		SpriteSheet sheetChevalier = new SpriteSheet(ImageLoader.loadImage("/textures/chevalier.png"));
 		
 		player_down = new BufferedImage[2];
 		player_up = new BufferedImage[2];
