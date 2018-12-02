@@ -12,35 +12,56 @@ public class Assets {
 
 	public static void init(){
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
-		SpriteSheet sheetChevalier = new SpriteSheet(ImageLoader.loadImage("/textures/chevalier.png"));
 		
-		player_down = new BufferedImage[2];
-		player_up = new BufferedImage[2];
-		player_left = new BufferedImage[2];
-		player_right = new BufferedImage[2];
+		SpriteSheet sheetFace = new SpriteSheet(ImageLoader.loadImage("/textures/LinfFace.png"));
+		SpriteSheet sheetDos = new SpriteSheet(ImageLoader.loadImage("/textures/LinkDos.png"));
+		SpriteSheet sheetDroite = new SpriteSheet(ImageLoader.loadImage("/textures/LinkDroite.png"));
+		SpriteSheet sheetGauche = new SpriteSheet(ImageLoader.loadImage("/textures/LinkGauche.png"));
 		
-		player_down[0] = sheet.crop(width * 4, 0, width, height);
-		player_down[1] = sheet.crop(width * 5, 0, width, height);
-		player_up[0] = sheet.crop(width * 6, 0, width, height);
-		player_up[1] = sheet.crop(width * 7, 0, width, height);
-		player_right[0] = sheet.crop(width * 4, height, width, height);
-		player_right[1] = sheet.crop(width * 5, height, width, height);
-		player_left[0] = sheet.crop(width * 6, height, width, height);
-		player_left[1] = sheet.crop(width * 7, height, width, height);
 		
-		zombie_down = new BufferedImage[2];
-		zombie_up = new BufferedImage[2];
-		zombie_left = new BufferedImage[2];
-		zombie_right = new BufferedImage[2];
+		player_down = new BufferedImage[8];
+		player_up = new BufferedImage[8];
+		player_left = new BufferedImage[9];
+		player_right = new BufferedImage[9];
 		
-		zombie_down[0] = sheet.crop(width * 4, height * 2, width, height);
-		zombie_down[1] = sheet.crop(width * 5, height * 2, width, height);
-		zombie_up[0] = sheet.crop(width * 6, height * 2, width, height);
-		zombie_up[1] = sheet.crop(width * 7, height * 2, width, height);
-		zombie_right[0] = sheet.crop(width * 4, height * 3, width, height);
-		zombie_right[1] = sheet.crop(width * 5, height * 3, width, height);
-		zombie_left[0] = sheet.crop(width * 6, height * 3, width, height);
-		zombie_left[1] = sheet.crop(width * 7, height * 3, width, height);
+		player_down[0] = sheetFace.crop(0, 0, width, height);
+		player_down[1] = sheetFace.crop(width, 0, width, height);
+		player_down[2] = sheetFace.crop(2*width, 0, width, height);
+		player_down[3] = sheetFace.crop(3*width, 0, width, height);
+		player_down[4] = sheetFace.crop(0, width, width, height);
+		player_down[5] = sheetFace.crop(width, width, width, height);
+		player_down[6] = sheetFace.crop(2*width, width, width, height);
+		player_down[7] = sheetFace.crop(3*width, width, width, height);
+		
+		player_up[0] = sheetDos.crop(0, 0, width, height);
+		player_up[1] = sheetDos.crop(width, 0, width, height);
+		player_up[2] = sheetDos.crop(2*width, 0, width, height);
+		player_up[3] = sheetDos.crop(3*width, 0, width, height);
+		player_up[4] = sheetDos.crop(0, width, width, height);
+		player_up[5] = sheetDos.crop(width, width, width, height);
+		player_up[6] = sheetDos.crop(2*width, width, width, height);
+		player_up[7] = sheetDos.crop(3*width, width, width, height);
+		
+		player_right[0] = sheetDroite.crop(0, 0, width, height);
+		player_right[1] = sheetDroite.crop(width, 0, width, height);
+		player_right[2] = sheetDroite.crop(2*width, 0, width, height);
+		player_right[3] = sheetDroite.crop(3*width, 0, width, height);
+		player_right[4] = sheetDroite.crop(0, width, width, height);
+		player_right[5] = sheetDroite.crop(width, width, width, height);
+		player_right[6] = sheetDroite.crop(2*width, width, width, height);
+		player_right[7] = sheetDroite.crop(3*width, width, width, height);
+		player_right[8] = sheetDroite.crop(3*width, width, width, height);
+		
+		player_left[0] = sheetGauche.crop(0, 0, width, height);
+		player_left[1] = sheetGauche.crop(width, 0, width, height);
+		player_left[2] = sheetGauche.crop(2*width, 0, width, height);
+		player_left[3] = sheetGauche.crop(3*width, 0, width, height);
+		player_left[4] = sheetGauche.crop(0, width, width, height);
+		player_left[5] = sheetGauche.crop(width, width, width, height);
+		player_left[6] = sheetGauche.crop(2*width, width, width, height);
+		player_left[7] = sheetGauche.crop(3*width, width, width, height);
+		player_left[8] = sheetGauche.crop(3*width, width, width, height);
+		
 		
 		dirt = sheet.crop(width, 0, width, height);
 		grass = sheet.crop(width * 2, 0, width, height);

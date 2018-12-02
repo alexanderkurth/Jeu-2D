@@ -1,5 +1,6 @@
 package main.entities.creatures;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -15,16 +16,16 @@ public class Player extends Creature {
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 		
-		bounds.x = 22;
-		bounds.y = 44;
-		bounds.width = 19;
-		bounds.height = 19;
+		bounds.x = 20;
+		bounds.y = 45;
+		bounds.width = 16;
+		bounds.height = 10;
 		
 		//Animatons
-		animDown = new Animation(450, Assets.player_down);
-		animUp = new Animation(450, Assets.player_up);
-		animLeft = new Animation(450, Assets.player_left);
-		animRight = new Animation(450, Assets.player_right);
+		animDown = new Animation(150, Assets.player_down);
+		animUp = new Animation(150, Assets.player_up);
+		animLeft = new Animation(150, Assets.player_left);
+		animRight = new Animation(150, Assets.player_right);
 	}
 
 	@Override
@@ -58,7 +59,7 @@ public class Player extends Creature {
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 		
-//		g.setColor(Color.red);
+//	g.setColor(Color.red);
 //		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //				bounds.width, bounds.height);
