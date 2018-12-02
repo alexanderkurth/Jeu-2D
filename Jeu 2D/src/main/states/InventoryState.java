@@ -12,6 +12,9 @@ public class InventoryState extends State{
 
 	@Override
 	public void tick() {		
+		if(handler.getKeyManager().isIPressed()) {
+			
+		}
 	}
 
 	@Override

@@ -7,12 +7,17 @@ import main.Handler;
 
 public abstract class Entity {
 
+	public static final int DEFAULT_HEALTH = 10;
 	protected Handler handler;
 	protected float x, y;
 	protected int width, height;
 	protected Rectangle bounds;
+
+	protected int health;
+	protected boolean 	active =true;
 	
 	public Entity(Handler handler, float x, float y, int width, int height){
+		health = DEFAULT_HEALTH;
 		this.handler = handler;
 		this.x = x;
 		this.y = y;
@@ -24,7 +29,19 @@ public abstract class Entity {
 	
 	public abstract void tick();
 	
+	public abstract void die();
+	
+
+
 	public abstract void render(Graphics g);
+	
+	public void hurt(int damage) {
+		health -= damage;
+		if(health <= 0) {
+			active = false;
+			die();
+		}
+	}
 	
 	public boolean checkEntityCollisions(float xOffset, float yOffset){
 		for(Entity e : handler.getWorld().getEntityManager().getEntities()){
@@ -70,6 +87,14 @@ public abstract class Entity {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 }
