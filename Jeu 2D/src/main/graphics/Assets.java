@@ -50,7 +50,7 @@ public class Assets {
 		player_right[5] = sheetDroite.crop(width, width, width, height);
 		player_right[6] = sheetDroite.crop(2*width, width, width, height);
 		player_right[7] = sheetDroite.crop(3*width, width, width, height);
-		player_right[8] = sheetDroite.crop(3*width, width, width, height);
+		player_right[8] = sheetDroite.crop(0, 2*width, width, height);
 		
 		player_left[0] = sheetGauche.crop(0, 0, width, height);
 		player_left[1] = sheetGauche.crop(width, 0, width, height);
@@ -60,7 +60,7 @@ public class Assets {
 		player_left[5] = sheetGauche.crop(width, width, width, height);
 		player_left[6] = sheetGauche.crop(2*width, width, width, height);
 		player_left[7] = sheetGauche.crop(3*width, width, width, height);
-		player_left[8] = sheetGauche.crop(3*width, width, width, height);
+		player_left[8] = sheetGauche.crop(0, 2*width, width, height);
 		
 		
 		dirt = sheet.crop(width, 0, width, height);
