@@ -9,6 +9,7 @@ import main.graphics.GameCamera;
 import main.input.KeyManager;
 import main.input.MouseManager;
 import main.states.GameState;
+import main.states.MenuState;
 import main.states.State;
 
 public class Game extends Display implements Runnable {
@@ -31,15 +32,21 @@ public class Game extends Display implements Runnable {
 	private GameCamera gameCamera;
 	
 	//States
-	private State gameState;
+	public State gameState;
+	public State menuState;
 
 	public Game(String title, int width, int height) {
 		super(title, width, height);
 		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 	}
 
 	private void init(){
 		this.getCanvas().addKeyListener(keyManager);
+		this.getCanvas().addMouseListener(mouseManager);
+		this.getCanvas().addMouseMotionListener(mouseManager);
+		this.getCanvas().addMouseListener(mouseManager);
+		this.getCanvas().addMouseMotionListener(mouseManager);
 		
 		handler = new Handler(this);
 		Assets.init();
@@ -47,6 +54,8 @@ public class Game extends Display implements Runnable {
 		gameCamera = new GameCamera(handler, 0, 0);
 		
 		gameState = new GameState(handler);
+		menuState = new MenuState(handler);
+		
 		State.setState(gameState);
 	}
 	
@@ -140,6 +149,10 @@ public class Game extends Display implements Runnable {
 	
 	public KeyManager getKeyManager(){
 		return keyManager;
+	}
+	
+	public MouseManager getMouseManager(){
+		return mouseManager;
 	}
 	
 	public GameCamera getGameCamera(){
