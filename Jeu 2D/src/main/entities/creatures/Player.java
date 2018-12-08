@@ -19,16 +19,16 @@ public class Player extends Creature {
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 		
-		bounds.x = 21;
-		bounds.y = 37;
-		bounds.width = 16;
-		bounds.height = 16;
+		bounds.x = 22;
+		bounds.y = 44;
+		bounds.width = 19;
+		bounds.height = 19;
 		
 		//Animatons
-		animDown = new Animation(111, Assets.player_down);
-		animUp = new Animation(111, Assets.player_up);
-		animLeft = new Animation(111, Assets.player_left);
-		animRight = new Animation(111, Assets.player_right);
+		animDown = new Animation(500, Assets.player_down);
+		animUp = new Animation(500, Assets.player_up);
+		animLeft = new Animation(500, Assets.player_left);
+		animRight = new Animation(500, Assets.player_right);
 	}
 
 	@Override

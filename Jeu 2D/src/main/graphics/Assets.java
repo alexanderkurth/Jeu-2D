@@ -9,6 +9,7 @@ public class Assets {
 	public static BufferedImage dirt, grass, stone, tree, rock;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
 	public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
+	public static BufferedImage wood;
 
 	public static void init(){
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
@@ -17,6 +18,8 @@ public class Assets {
 		SpriteSheet sheetDos = new SpriteSheet(ImageLoader.loadImage("/textures/LinkDos.png"));
 		SpriteSheet sheetDroite = new SpriteSheet(ImageLoader.loadImage("/textures/LinkDroite.png"));
 		SpriteSheet sheetGauche = new SpriteSheet(ImageLoader.loadImage("/textures/LinkGauche.png"));
+		
+		wood = sheet.crop(width, height, width, height);
 		
 		
 		player_down = new BufferedImage[8];

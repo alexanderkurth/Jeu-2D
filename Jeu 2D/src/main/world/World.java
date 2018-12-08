@@ -7,6 +7,7 @@ import main.Handler;
 import main.entities.EntityManager;
 import main.entities.creatures.Player;
 import main.entities.statics.Tree;
+import main.item.ItemManager;
 import main.tile.Tile;
 import main.utils.Utils;
 import main.world.dungeon.Corridor;
@@ -44,6 +45,9 @@ public class World {
 
 	private RoomManager roomManager;
 
+	
+	private ItemManager itemManager;
+	
 	public World(Handler handler, String path){
 		this.handler = handler;
 		//Entity Manager
@@ -55,12 +59,15 @@ public class World {
 		roomManager = new RoomManager(handler);
 
 		createWorld();
-
+		
+		itemManager = new ItemManager(handler);
+		
 		entityManager.getPlayer().setX(100);
 		entityManager.getPlayer().setY(100);
 	}
 
 	public void tick(){
+		itemManager.tick();
 		entityManager.tick();
 	}
 
@@ -76,6 +83,7 @@ public class World {
 						(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 			}
 		}
+		itemManager.render(g);
 		//Entities
 		entityManager.render(g);
 
@@ -196,6 +204,22 @@ public class World {
 	
 	public int getX() {
 		return x;
+	}
+
+	public Handler getHandler() {
+		return handler;
+	}
+
+	public void setHandler(Handler handler) {
+		this.handler = handler;
+	}
+
+	public ItemManager getItemManager() {
+		return itemManager;
+	}
+
+	public void setItemManager(ItemManager itemManager) {
+		this.itemManager = itemManager;
 	}
 
 	public void setX(int x) {
