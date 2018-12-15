@@ -31,10 +31,10 @@ public class Assets {
 		player_idle = new BufferedImage[5];
 		
 		player_idle[0] = idle.crop(0, 0, width, height);
-		player_idle[1] = idle.crop(0, height, width, height);
-		player_idle[2] = idle.crop(0, 2*height, width, height);
-		player_idle[3] = idle.crop(width, 0, width, height);
-		player_idle[4] = idle.crop(width, height, width, height);
+		player_idle[1] = idle.crop(width, 0, width, height);
+		player_idle[2] = idle.crop(0, height, width, height);
+		player_idle[3] = idle.crop(height, width, width, height);
+		player_idle[4] = idle.crop(0, 0, width, height);
 
 		
 		player_down[0] = sheetFace.crop(0, 0, width, height);
