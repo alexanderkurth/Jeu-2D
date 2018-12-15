@@ -21,8 +21,8 @@ public class Player extends Creature {
 		
 		bounds.x = 22;
 		bounds.y = 44;
-		bounds.width = 19;
-		bounds.height = 19;
+		bounds.width = 17;
+		bounds.height = 13;
 		
 		//Animatons
 		animDown = new Animation(175, Assets.player_down);

@@ -110,9 +110,10 @@ public class Game extends Display implements Runnable {
 			
 			if(delta >= 1){
 				tick();
-				render();
 				ticks++;
 				delta--;
+			}else {
+				render();
 			}
 			
 			if(timer >= 1000000000){
