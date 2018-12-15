@@ -12,7 +12,7 @@ import main.graphics.Assets;
 public class Player extends Creature {
 	
 	//Animations
-	private Animation animDown, animUp, animLeft, animRight;
+	private Animation animDown, animUp, animLeft, animRight, idle;
 	// Attack timer
 	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
 	
@@ -29,11 +29,17 @@ public class Player extends Creature {
 		animUp = new Animation(175, Assets.player_up);
 		animLeft = new Animation(175, Assets.player_left);
 		animRight = new Animation(175, Assets.player_right);
+		idle = new Animation(500, Assets.player_idle);
 	}
+	
+	//checkmovemrnts
 
 	@Override
 	public void tick() {
 		//Animations
+		idle.tick();
+		
+		
 		animDown.tick();
 		animUp.tick();
 		animRight.tick();
@@ -117,6 +123,9 @@ public class Player extends Creature {
 	}
 	
 	private BufferedImage getCurrentAnimationFrame(){
+		if(xMove == 0 & yMove == 0) {
+			return idle.getCurrentFrame();
+		}
 		if(xMove < 0){
 			return animLeft.getCurrentFrame();
 		}else if(xMove > 0){
