@@ -8,6 +8,7 @@ import main.Handler;
 import main.entities.Entity;
 import main.graphics.Animation;
 import main.graphics.Assets;
+import main.inventory.Inventory;
 
 public class Player extends Creature {
 	
@@ -15,6 +16,8 @@ public class Player extends Creature {
 	private Animation animDown, animUp, animLeft, animRight, idle;
 	// Attack timer
 	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
+	
+	private Inventory inventory;
 	
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
@@ -30,6 +33,8 @@ public class Player extends Creature {
 		animLeft = new Animation(175, Assets.player_left);
 		animRight = new Animation(175, Assets.player_right);
 		idle = new Animation(500, Assets.player_idle);
+		
+		inventory = new Inventory(handler);
 	}
 	
 	//checkmovemrnts
@@ -50,6 +55,9 @@ public class Player extends Creature {
 		handler.getGameCamera().centerOnEntity(this);
 		// Attack
 		checkAttacks();
+		
+		//inventort
+		inventory.tick();
 	}
 	
 	private void checkAttacks(){
@@ -120,6 +128,8 @@ public class Player extends Creature {
 //		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //				bounds.width, bounds.height);
+		
+		inventory.render(g);
 	}
 	
 	private BufferedImage getCurrentAnimationFrame(){
@@ -135,6 +145,14 @@ public class Player extends Creature {
 		}else{
 			return animDown.getCurrentFrame();
 		}
+	}
+
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
 	}
 
 }
