@@ -106,7 +106,7 @@ public class Player extends Creature {
 		System.out.println("You lose");
 	}
 	
-	private void getInput(){
+	public void getInput(){
 		xMove = 0;
 		yMove = 0;
 		

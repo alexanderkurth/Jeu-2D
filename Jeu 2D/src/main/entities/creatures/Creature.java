@@ -1,6 +1,5 @@
 package main.entities.creatures;
 
-import main.Game;
 import main.Handler;
 import main.entities.Entity;
 import main.tile.Tile;
@@ -23,14 +22,14 @@ public abstract class Creature extends Entity {
 		yMove = 0;
 	}
 	
-	public void move(){
+	protected void move(){
 		if(!checkEntityCollisions(xMove, 0f))
 			moveX();
 		if(!checkEntityCollisions(0f, yMove))
 			moveY();
 	}
 	
-	public void moveX(){
+	protected void moveX(){
 		if(xMove > 0){//Moving right
 			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILEWIDTH;
 			
@@ -54,7 +53,7 @@ public abstract class Creature extends Entity {
 		}
 	}
 	
-	public void moveY(){
+	protected void moveY(){
 		if(yMove < 0){//Up
 			int ty = (int) (y + yMove + bounds.y) / Tile.TILEHEIGHT;
 			
