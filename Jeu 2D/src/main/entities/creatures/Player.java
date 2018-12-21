@@ -64,6 +64,9 @@ public class Player extends Creature {
 		ar.width = arSize;
 		ar.height = arSize;
 		
+		
+		//a modifier pour la position du joueur
+		
 		if(handler.getKeyManager().aUp){
 			ar.x = cb.x + cb.width / 2 - arSize / 2;
 			ar.y = cb.y - arSize;
