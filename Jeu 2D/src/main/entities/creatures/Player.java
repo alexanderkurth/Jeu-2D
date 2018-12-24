@@ -19,7 +19,7 @@ public class Player extends Creature {
 	
 	private Inventory inventory;
 	
-	private boolean attackActive = false;
+	private boolean attackRight;
 	
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
@@ -37,9 +37,11 @@ public class Player extends Creature {
 		
 		idle = new Animation(500, Assets.player_idle);
 		
-		attaqueDroite = new Animation(75, Assets.player_attaqueDroite);
+		attaqueDroite = new Animation(133, Assets.player_attaqueDroite);
 		
 		inventory = new Inventory(handler);
+		
+		attackRight = false;
 	}
 	
 	//checkmovemrnts
@@ -56,7 +58,9 @@ public class Player extends Creature {
 		animLeft.tick();
 		//Movement
 		getInput();
-		move();
+		if(!attackRight)
+			move();
+		
 		handler.getGameCamera().centerOnEntity(this);
 		// Attack
 		checkAttacks();
@@ -107,9 +111,9 @@ public class Player extends Creature {
 		}else if(handler.getKeyManager().aRight){
 			ar.x = cb.x + cb.width;
 			ar.y = cb.y + cb.height / 2 - arSize / 2;
-			attackActive = true;
+			attackRight =  true;
 		}else{
-			attackActive = false;
+			attackRight = false;
 			return;
 		}
 		
@@ -149,14 +153,7 @@ public class Player extends Creature {
 	@Override
 	public void render(Graphics g) {
 			g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);		
-	/*
-			if(attackTimer()) {
-				System.out.println("active");
-			}else {
-				System.out.println("not active");
-			}
-			*/
-			
+
 //		g.setColor(Color.red);
 //		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
@@ -168,20 +165,20 @@ public class Player extends Creature {
 	
 	private BufferedImage getCurrentAnimationFrame(){
 		
-		if(attackActive) {
-				return attaqueDroite.getCurrentFrame();			
+		if(attackRight) {			
+			return attaqueDroite.getCurrentFrame();			
 		}
 		
-		if(xMove == 0 & yMove == 0) {
-			return idle.getCurrentFrame();
-		}else if(xMove < 0){
+		if(xMove < 0){
 			return animLeft.getCurrentFrame();
 		}else if(xMove > 0){
 			return animRight.getCurrentFrame();
 		}else if(yMove < 0){
 			return animUp.getCurrentFrame();
-		}else{
+		}else if(yMove > 0){
 			return animDown.getCurrentFrame();
+		}else {
+			return idle.getCurrentFrame();
 		}
 
 	}
