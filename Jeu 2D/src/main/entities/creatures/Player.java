@@ -13,11 +13,13 @@ import main.inventory.Inventory;
 public class Player extends Creature {
 	
 	//Animations
-	private Animation animDown, animUp, animLeft, animRight, idle;
+	private Animation animDown, animUp, animLeft, animRight, idle, attaqueDroite;
 	// Attack timer
-	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
+	private long lastAttackTimer, attackCooldown = 1000, attackTimer = attackCooldown;
 	
 	private Inventory inventory;
+	
+	private boolean attackActive = false;
 	
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
@@ -32,7 +34,10 @@ public class Player extends Creature {
 		animUp = new Animation(175, Assets.player_up);
 		animLeft = new Animation(175, Assets.player_left);
 		animRight = new Animation(175, Assets.player_right);
+		
 		idle = new Animation(500, Assets.player_idle);
+		
+		attaqueDroite = new Animation(75, Assets.player_attaqueDroite);
 		
 		inventory = new Inventory(handler);
 	}
@@ -43,7 +48,7 @@ public class Player extends Creature {
 	public void tick() {
 		//Animations
 		idle.tick();
-		
+		attaqueDroite.tick();
 		
 		animDown.tick();
 		animUp.tick();
@@ -56,16 +61,34 @@ public class Player extends Creature {
 		// Attack
 		checkAttacks();
 		
-		//inventort
+		//inventory
 		inventory.tick();
 	}
-	
+	/*
+	private boolean attackTimer() {
+		attackTimer += System.currentTimeMillis() - lastAttackTimer;
+		lastAttackTimer = System.currentTimeMillis();
+		
+		if(attackTimer < attackCooldown) {
+			attackActive = false;
+			//System.out.println("en recharge");
+			return attackActive;
+		}else {
+			attackActive = true;
+			//System.out.println("attaque possible");
+			return attackActive;
+		}
+	}
+	*/
 	private void checkAttacks(){
 		attackTimer += System.currentTimeMillis() - lastAttackTimer;
 		lastAttackTimer = System.currentTimeMillis();
-		if(attackTimer < attackCooldown)
-			return;
 		
+		if(attackTimer < attackCooldown) {
+			return;
+		}
+
+			
 		Rectangle cb = getCollisionBounds(0, 0);
 		Rectangle ar = new Rectangle();
 		int arSize = 20;
@@ -84,7 +107,9 @@ public class Player extends Creature {
 		}else if(handler.getKeyManager().aRight){
 			ar.x = cb.x + cb.width;
 			ar.y = cb.y + cb.height / 2 - arSize / 2;
+			attackActive = true;
 		}else{
+			attackActive = false;
 			return;
 		}
 		
@@ -98,6 +123,7 @@ public class Player extends Creature {
 				return;
 			}
 		}
+		
 		
 	}
 	
@@ -122,8 +148,15 @@ public class Player extends Creature {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-		
+			g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);		
+	/*
+			if(attackTimer()) {
+				System.out.println("active");
+			}else {
+				System.out.println("not active");
+			}
+			*/
+			
 //		g.setColor(Color.red);
 //		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
@@ -132,11 +165,16 @@ public class Player extends Creature {
 		inventory.render(g);
 	}
 	
+	
 	private BufferedImage getCurrentAnimationFrame(){
+		
+		if(attackActive) {
+				return attaqueDroite.getCurrentFrame();			
+		}
+		
 		if(xMove == 0 & yMove == 0) {
 			return idle.getCurrentFrame();
-		}
-		if(xMove < 0){
+		}else if(xMove < 0){
 			return animLeft.getCurrentFrame();
 		}else if(xMove > 0){
 			return animRight.getCurrentFrame();
@@ -145,6 +183,7 @@ public class Player extends Creature {
 		}else{
 			return animDown.getCurrentFrame();
 		}
+
 	}
 
 	public Inventory getInventory() {

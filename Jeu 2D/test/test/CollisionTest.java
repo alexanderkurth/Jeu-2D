@@ -12,7 +12,7 @@ import main.entities.creatures.Player;
 import main.entities.statics.Tree;
 import main.world.World;
 
-class MouvementTest {
+public class CollisionTest {
 	
 	Player player;
 	Handler handler;
@@ -37,35 +37,29 @@ class MouvementTest {
 		
 		
 	}
+	
+	@Test
+	void testCollisionArbreParLaDroite() {
+		world.getEntityManager().addEntity(new Tree(handler, 3, 3));
+		
+		player.setX(2);
+		player.setY(3);
 
-	@Test
-	void testMouvementHaut() {
-		player.setyMove(3);
+		player.setxMove(1);
 		
-		assertEquals(3.0, player.getyMove());
+		assertEquals(2.0, player.getX());
 	}
 	
 	@Test
-	void testMouvementBas() {
-		player.setyMove(-3);
+	void testCollisionArbreParLaGauche() {
+		world.getEntityManager().addEntity(new Tree(handler, 3, 3));
 		
-		assertEquals(-3.0, player.getyMove());
-	}
-	
-	@Test
-	void testMouvementDroite() {
-		player.setxMove(3);
+		player.setX(4);
+		player.setY(3);
 		
-		assertEquals(3.0, player.getxMove());
-	}
-	
-	@Test
-	void testMouvementGauche() {
-		player.setxMove(-3);
+		player.setxMove(-1);
 		
-		assertEquals(-3.0, player.getxMove());
+		assertEquals(4.0,player.getX());
 	}
-	
-
 
 }

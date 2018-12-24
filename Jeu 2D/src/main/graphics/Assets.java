@@ -7,7 +7,7 @@ public class Assets {
 	private static final int width = 32, height = 32;
 	
 	public static BufferedImage dirt, grass, stone, tree, rock;
-	public static BufferedImage[] player_down, player_up, player_left, player_right, player_idle;
+	public static BufferedImage[] player_down, player_up, player_left, player_right, player_idle, player_attaqueDroite;
 	public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
 	public static BufferedImage wood;
 
@@ -21,6 +21,8 @@ public class Assets {
 		
 		SpriteSheet idle = new SpriteSheet(ImageLoader.loadImage("/textures/idle.png"));
 		
+		SpriteSheet attaqueDroite = new SpriteSheet(ImageLoader.loadImage("/textures/attaquedroite.png"));
+		  
 		wood = sheet.crop(width, height, width, height);
 		
 		
@@ -29,6 +31,14 @@ public class Assets {
 		player_left = new BufferedImage[9];
 		player_right = new BufferedImage[9];
 		player_idle = new BufferedImage[5];
+		player_attaqueDroite = new BufferedImage[6];
+		
+		player_attaqueDroite[0] = attaqueDroite.crop(0,0,width, height);
+		player_attaqueDroite[1] = attaqueDroite.crop(width,0,width, height);
+		player_attaqueDroite[2] = attaqueDroite.crop(0,width,width, height);
+		player_attaqueDroite[3] = attaqueDroite.crop(width,height,width, height);
+		player_attaqueDroite[4] = attaqueDroite.crop(0,2*height,width, height);
+		player_attaqueDroite[5] = attaqueDroite.crop(width,2*height,width, height);
 		
 		player_idle[0] = idle.crop(0, 0, width, height);
 		player_idle[1] = idle.crop(width, 0, width, height);
