@@ -12,6 +12,8 @@ public abstract class Entity {
 	protected float x, y;
 	protected int width, height;
 	protected Rectangle bounds;
+	
+	protected Rectangle armBounds; 
 
 	protected int health;
 	protected boolean 	active =true;
@@ -25,6 +27,7 @@ public abstract class Entity {
 		this.height = height;
 		
 		bounds = new Rectangle(0, 0, width, height);
+		armBounds = new Rectangle(0,0,16,4);
 	}
 	
 	public abstract void tick();
@@ -51,8 +54,22 @@ public abstract class Entity {
 		return false;
 	}
 	
+	public boolean checkEntityAttack(float xOffset, float yOffset){
+		for(Entity e : handler.getWorld().getEntityManager().getEntities()){
+			if(e.equals(this))
+				continue;
+			if(e.getAttackBounds(0f, 0f).intersects(getAttackBounds(xOffset, yOffset)))
+				return true;
+		}
+		return false;
+	}
+	
 	public Rectangle getCollisionBounds(float xOffset, float yOffset){
 		return new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset), bounds.width, bounds.height);
+	}
+	
+	public Rectangle getAttackBounds(float xOffset, float yOffset){
+		return new Rectangle((int) (x + armBounds.x + xOffset), (int) (y + armBounds.y + yOffset), armBounds.width, armBounds.height);
 	}
 
 	public float getX() {

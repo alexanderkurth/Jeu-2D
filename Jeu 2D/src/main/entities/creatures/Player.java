@@ -1,5 +1,6 @@
 package main.entities.creatures;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -15,19 +16,29 @@ public class Player extends Creature {
 	//Animations
 	private Animation animDown, animUp, animLeft, animRight, idle, attaqueDroite;
 	// Attack timer
-	private long lastAttackTimer, attackCooldown = 1000, attackTimer = attackCooldown;
+	private long lastAttackTimer, attackCooldown = 600, attackTimer = attackCooldown;
 	
 	private Inventory inventory;
 	
 	private boolean attackRight;
-	
+	private boolean attackActive;
+		
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 		
+		//Corpse
 		bounds.x = 22;
 		bounds.y = 44;
 		bounds.width = 17;
 		bounds.height = 13;
+		
+		
+		//arm
+		armBounds.x = 22;
+		armBounds.y = 40;
+		armBounds.width = 16;
+		armBounds.height = 4;
+		
 		
 		//Animatons
 		animDown = new Animation(175, Assets.player_down);
@@ -37,14 +48,15 @@ public class Player extends Creature {
 		
 		idle = new Animation(500, Assets.player_idle);
 		
-		attaqueDroite = new Animation(133, Assets.player_attaqueDroite);
+		attaqueDroite = new Animation(100, Assets.player_attaqueDroite);
 		
 		inventory = new Inventory(handler);
 		
 		attackRight = false;
+		attackActive = false;
 	}
 	
-	//checkmovemrnts
+	
 
 	@Override
 	public void tick() {
@@ -58,7 +70,8 @@ public class Player extends Creature {
 		animLeft.tick();
 		//Movement
 		getInput();
-		if(!attackRight)
+		
+		if(!attackActive)
 			move();
 		
 		handler.getGameCamera().centerOnEntity(this);
@@ -68,22 +81,7 @@ public class Player extends Creature {
 		//inventory
 		inventory.tick();
 	}
-	/*
-	private boolean attackTimer() {
-		attackTimer += System.currentTimeMillis() - lastAttackTimer;
-		lastAttackTimer = System.currentTimeMillis();
-		
-		if(attackTimer < attackCooldown) {
-			attackActive = false;
-			//System.out.println("en recharge");
-			return attackActive;
-		}else {
-			attackActive = true;
-			//System.out.println("attaque possible");
-			return attackActive;
-		}
-	}
-	*/
+
 	private void checkAttacks(){
 		attackTimer += System.currentTimeMillis() - lastAttackTimer;
 		lastAttackTimer = System.currentTimeMillis();
@@ -93,26 +91,34 @@ public class Player extends Creature {
 		}
 
 			
-		Rectangle cb = getCollisionBounds(0, 0);
+		Rectangle cb = getAttackBounds(0, 0);
 		Rectangle ar = new Rectangle();
-		int arSize = 20;
+		int arSize = 16;
 		ar.width = arSize;
-		ar.height = arSize;
+		ar.height = 4;
 		
 		if(handler.getKeyManager().aUp){
 			ar.x = cb.x + cb.width / 2 - arSize / 2;
 			ar.y = cb.y - arSize;
+			
 		}else if(handler.getKeyManager().aDown){
 			ar.x = cb.x + cb.width / 2 - arSize / 2;
 			ar.y = cb.y + cb.height;
+			
 		}else if(handler.getKeyManager().aLeft){
 			ar.x = cb.x - arSize;
 			ar.y = cb.y + cb.height / 2 - arSize / 2;
+			
 		}else if(handler.getKeyManager().aRight){
 			ar.x = cb.x + cb.width;
 			ar.y = cb.y + cb.height / 2 - arSize / 2;
+			attackActive = true;
 			attackRight =  true;
+			armBounds.x = 30;
+			
 		}else{
+			armBounds.x = 24;
+			attackActive= false;
 			attackRight = false;
 			return;
 		}
@@ -123,7 +129,7 @@ public class Player extends Creature {
 			if(e.equals(this))
 				continue;
 			if(e.getCollisionBounds(0, 0).intersects(ar)){
-				e.hurt(1);
+				e.hurt(100);
 				return;
 			}
 		}
@@ -153,11 +159,16 @@ public class Player extends Creature {
 	@Override
 	public void render(Graphics g) {
 			g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);		
-
-//		g.setColor(Color.red);
-//		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
-//				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
-//				bounds.width, bounds.height);
+		
+		g.setColor(Color.red);
+		g.fillRect((int) (x + armBounds.x - handler.getGameCamera().getxOffset()),
+				(int) (y + armBounds.y - handler.getGameCamera().getyOffset()),
+				armBounds.width, armBounds.height);
+		
+		g.setColor(Color.blue);
+		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
+				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
+				bounds.width, bounds.height);
 		
 		inventory.render(g);
 	}
