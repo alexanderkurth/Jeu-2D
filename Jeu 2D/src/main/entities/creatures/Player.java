@@ -14,13 +14,14 @@ import main.inventory.Inventory;
 public class Player extends Creature {
 	
 	//Animations
-	private Animation animDown, animUp, animLeft, animRight, idle, attaqueDroite;
+	private Animation animDown, animUp, animLeft, animRight, idle, attaqueDroite, attaqueGauche;
 	// Attack timer
 	private long lastAttackTimer, attackCooldown = 600, attackTimer = attackCooldown;
 	
 	private Inventory inventory;
 	
 	private boolean attackRight;
+	private boolean attackLeft;
 	private boolean attackActive;
 		
 	public Player(Handler handler, float x, float y) {
@@ -48,11 +49,13 @@ public class Player extends Creature {
 		
 		idle = new Animation(500, Assets.player_idle);
 		
-		attaqueDroite = new Animation(100, Assets.player_attaqueDroite);
+		attaqueDroite = new Animation(100, Assets.player_rightAttack);
+		attaqueGauche = new Animation(100,Assets.player_leftAttack);
 		
 		inventory = new Inventory(handler);
 		
 		attackRight = false;
+		attackLeft = false;
 		attackActive = false;
 	}
 	
@@ -63,6 +66,7 @@ public class Player extends Creature {
 		//Animations
 		idle.tick();
 		attaqueDroite.tick();
+		attaqueGauche.tick();
 		
 		animDown.tick();
 		animUp.tick();
@@ -108,6 +112,9 @@ public class Player extends Creature {
 		}else if(handler.getKeyManager().aLeft){
 			ar.x = cb.x - arSize;
 			ar.y = cb.y + cb.height / 2 - arSize / 2;
+			attackActive = true;
+			attackLeft =  true;
+			armBounds.x = 10;
 			
 		}else if(handler.getKeyManager().aRight){
 			ar.x = cb.x + cb.width;
@@ -120,6 +127,7 @@ public class Player extends Creature {
 			armBounds.x = 24;
 			attackActive= false;
 			attackRight = false;
+			attackLeft = false;
 			return;
 		}
 		
@@ -159,17 +167,18 @@ public class Player extends Creature {
 	@Override
 	public void render(Graphics g) {
 			g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);		
-		
+		/*
 		g.setColor(Color.red);
 		g.fillRect((int) (x + armBounds.x - handler.getGameCamera().getxOffset()),
 				(int) (y + armBounds.y - handler.getGameCamera().getyOffset()),
 				armBounds.width, armBounds.height);
-		
+				*/
+		/*
 		g.setColor(Color.blue);
 		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 				bounds.width, bounds.height);
-		
+		*/
 		inventory.render(g);
 	}
 	
@@ -178,6 +187,9 @@ public class Player extends Creature {
 		
 		if(attackRight) {			
 			return attaqueDroite.getCurrentFrame();			
+		}
+		if(attackLeft) {
+			return attaqueGauche.getCurrentFrame();
 		}
 		
 		if(xMove < 0){

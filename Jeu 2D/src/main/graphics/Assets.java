@@ -7,7 +7,7 @@ public class Assets {
 	private static final int width = 32, height = 32;
 	
 	public static BufferedImage dirt, grass, stone, tree, rock;
-	public static BufferedImage[] player_down, player_up, player_left, player_right, player_idle, player_attaqueDroite;
+	public static BufferedImage[] player_down, player_up, player_left, player_right, player_idle, player_rightAttack, player_leftAttack;
 	public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
 	public static BufferedImage wood;
 
@@ -22,7 +22,9 @@ public class Assets {
 		SpriteSheet idle = new SpriteSheet(ImageLoader.loadImage("/textures/idle.png"));
 		
 		SpriteSheet attaqueDroite = new SpriteSheet(ImageLoader.loadImage("/textures/attaquedroite.png"));
-		  
+		SpriteSheet attaqueGauche = new SpriteSheet(ImageLoader.loadImage("/textures/attaquegauche.png"));  
+		
+		
 		wood = sheet.crop(width, height, width, height);
 		
 		
@@ -31,14 +33,23 @@ public class Assets {
 		player_left = new BufferedImage[9];
 		player_right = new BufferedImage[9];
 		player_idle = new BufferedImage[5];
-		player_attaqueDroite = new BufferedImage[6];
+		player_rightAttack = new BufferedImage[6];
+		player_leftAttack = new BufferedImage[6];
 		
-		player_attaqueDroite[0] = attaqueDroite.crop(0,0,width, height);
-		player_attaqueDroite[1] = attaqueDroite.crop(width,0,width, height);
-		player_attaqueDroite[2] = attaqueDroite.crop(0,width,width, height);
-		player_attaqueDroite[3] = attaqueDroite.crop(width,height,width, height);
-		player_attaqueDroite[4] = attaqueDroite.crop(0,2*height,width, height);
-		player_attaqueDroite[5] = attaqueDroite.crop(width,2*height,width, height);
+		player_rightAttack[0] = attaqueDroite.crop(0,0,width, height);
+		player_rightAttack[1] = attaqueDroite.crop(width,0,width, height);
+		player_rightAttack[2] = attaqueDroite.crop(0,width,width, height);
+		player_rightAttack[3] = attaqueDroite.crop(width,height,width, height);
+		player_rightAttack[4] = attaqueDroite.crop(0,2*height,width, height);
+		player_rightAttack[5] = attaqueDroite.crop(width,2*height,width, height);
+		
+		player_leftAttack[0] = attaqueGauche.crop(0,0,width, height);
+		player_leftAttack[1] = attaqueGauche.crop(width,0,width, height);
+		player_leftAttack[2] = attaqueGauche.crop(0,width,width, height);
+		player_leftAttack[3] = attaqueGauche.crop(width,height,width, height);
+		player_leftAttack[4] = attaqueGauche.crop(0,2*height,width, height);
+		player_leftAttack[5] = attaqueGauche.crop(width,2*height,width, height);
+		
 		
 		player_idle[0] = idle.crop(0, 0, width, height);
 		player_idle[1] = idle.crop(width, 0, width, height);
@@ -88,7 +99,9 @@ public class Assets {
 		
 		dirt = sheet.crop(width, 0, width, height);
 		grass = sheet.crop(width * 2, 0, width, height);
-		stone = sheet.crop(width * 3, 0, width, height);
+		
+		stone = sheet.crop(width, width * 2, width, height);
+		
 		tree = sheet.crop(0, 0, width, height * 2);
 		rock = sheet.crop(0, height * 2, width, height);
 	}
