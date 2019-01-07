@@ -16,7 +16,7 @@ public class Animation {
 		lastTime = System.currentTimeMillis();
 	}
 	
-	public void tick(){
+	public void tick(){ 
 		timer += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();
 		

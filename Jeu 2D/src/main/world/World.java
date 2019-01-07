@@ -55,6 +55,13 @@ public class World {
 
 		// Temporary entity code!
 		entityManager.addEntity(new Tree(handler, 100, 250));
+		entityManager.addEntity(new Tree(handler, 125, 250));
+
+		entityManager.addEntity(new Tree(handler, 150, 250));
+
+		entityManager.addEntity(new Tree(handler, 175, 250));
+
+		
 
 		roomManager = new RoomManager(handler);
 
