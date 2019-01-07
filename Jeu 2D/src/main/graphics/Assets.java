@@ -1,6 +1,5 @@
 package main.graphics;
 
-import java.awt.Font;
 import java.awt.image.BufferedImage;
 
 public class Assets {
@@ -23,7 +22,7 @@ public class Assets {
 		
 		SpriteSheet idle = new SpriteSheet(ImageLoader.loadImage("/textures/idle.png"));
 		
-		SpriteSheet inventoryScreen = new SpriteSheet(ImageLoader.loadImage("/textures/inventoryScreen.png"));
+		//SpriteSheet inventoryScreen = new SpriteSheet(ImageLoader.loadImage("/textures/inventoryScreen.png"));
 		
 		SpriteSheet attaqueDroite = new SpriteSheet(ImageLoader.loadImage("/textures/attaquedroite.png"));
 		SpriteSheet attaqueGauche = new SpriteSheet(ImageLoader.loadImage("/textures/attaquegauche.png"));  
